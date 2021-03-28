@@ -1,13 +1,13 @@
-const findMoviesByTitle = (title) => {
-    return fetch(`http://www.omdbapi.com/?s=${title}&apikey=4a249f8d`)
+const findJobsByTitle = (title) => {
+    return fetch(`https://jobs.github.com/positions.json?description=${title}&page=1`)
         .then(response => response.json())
 }
 
-const findMovieByImdbID = (imdbID) => {
-    return fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=4a249f8d`)
+const findMovieByImdbID = (jobId) => {
+    return fetch(`https://jobs.github.com/positions/${jobId}.json`)
         .then(response => response.json())
 }
 
 export default {
-    findMoviesByTitle, findMovieByImdbID
+    findJobsByTitle, findMovieByImdbID
 }

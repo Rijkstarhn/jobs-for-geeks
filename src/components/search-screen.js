@@ -1,19 +1,19 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
-import movieService from "../services/movie-service"
+import jobService from "../services/movie-service"
 
 const SearchScreen = () => {
     const history = useHistory()
     const {title} = useParams()
     const [searchTitle, setSearchTitle] = useState(title)
-    const [results, setResults] = useState({Search: []})
+    const [results, setResults] = useState(undefined)
     useEffect(() => {
         setSearchTitle(title)
-        findMoviesByTitle(title)
+        findJobsByTitle(title)
     }, [])
-    const findMoviesByTitle = (title) => {
+    const findJobsByTitle = (title) => {
         history.push(`/search/${title}`)
-        movieService.findMoviesByTitle(title)
+        jobService.findJobsByTitle(title)
             .then((results) => {
                 setResults(results)
             })
@@ -32,7 +32,7 @@ const SearchScreen = () => {
                 <div className="col-3">
                     <button
                         onClick={() => {
-                            findMoviesByTitle(searchTitle)
+                            findJobsByTitle(searchTitle)
                         }}
                         className="btn btn-primary btn-block">
                         Search
@@ -40,19 +40,24 @@ const SearchScreen = () => {
                 </div>
             </div>
             <br/>
-            <ul className="list-group">
-                {
-                    results && results.Search && results.Search.map((movie) => {
-                        return(
-                            <li className="list-group-item">
-                                <Link to={`/details/${movie.imdbID}`}>
-                                    {movie.Title}
-                                </Link>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
+            {
+                results !== undefined &&
+                <>
+                    <ul className="list-group">
+                        {
+                            results.map((result) => {
+                                return(
+                                    <li className="list-group-item">
+                                        <Link to={`/details/${result.id}`}>
+                                            {result.title}
+                                        </Link>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </>
+            }
         </div>
     )
 }

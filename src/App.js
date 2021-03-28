@@ -14,7 +14,7 @@ function App() {
                    exact={true}>
                 <SearchScreen/>
             </Route>
-            <Route path="/details/:imdbID" exact={true}>
+            <Route path="/details/:jobId" exact={true}>
                 <DetailsScreen/>
             </Route>
         </BrowserRouter>

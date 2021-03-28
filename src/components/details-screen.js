@@ -3,40 +3,25 @@ import {useHistory, useParams} from 'react-router-dom'
 import movieService from '../services/movie-service'
 
 const DetailsScreen = () => {
-    const {imdbID} = useParams()
+    const {jobId} = useParams()
     const history = useHistory()
-    const [movie, setMovie] = useState({})
+    const [job, setMovie] = useState({})
+    const [jobDescription, setJobDescription] = useState({})
     useEffect(() => {
         findMovieByImdbID()
     }, [])
     const findMovieByImdbID = () => {
-        movieService.findMovieByImdbID(imdbID)
+        movieService.findMovieByImdbID(jobId)
             .then((data) => {
                 setMovie(data)
+
             })
     }
     return(
         <div>
             <button onClick={()=>{history.goBack()}}>Back</button>
-            <h2>{movie.Title}</h2>
-            <p>
-                <img src={movie.Poster} width={100} style={{float: "right"}}/>
-                {movie.Plot}
-            </p>
-            <div>
-                {movie.Actors}
-                <ul>
-                    {
-                        movie.Actors && movie.Actors.split(",")
-                            .map((actor)=>{
-                                return(
-                                    <li>{actor}</li>
-                                )
-                            })
-                    }
-                </ul>
-            </div>
-            {JSON.stringify(movie)}
+            <h2>{job.title}</h2>
+            <div dangerouslySetInnerHTML={{__html: job.description}} />;
         </div>
     )
 }
