@@ -18,6 +18,15 @@ const SearchScreen = () => {
                 setResults(results)
             })
     }
+    const handleSubmit = () => {
+        findJobsByTitle(searchTitle);
+    }
+    const handleKeypress = e => {
+        //it triggers by pressing the enter key
+        if (e.key === 'Enter') {
+            handleSubmit();
+        }
+    };
     return(
         <div>
             <h2>Search Screen</h2>
@@ -27,6 +36,9 @@ const SearchScreen = () => {
                            onChange={(event) => {
                                setSearchTitle(event.target.value)
                            }}
+                           onKeyPress = {
+                               handleKeypress
+                           }
                            className="form-control"/>
                 </div>
                 <div className="col-3">

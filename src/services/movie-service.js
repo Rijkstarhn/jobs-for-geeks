@@ -3,11 +3,11 @@ const findJobsByTitle = (title) => {
         .then(response => response.json())
 }
 
-const findMovieByImdbID = (jobId) => {
+const findJobByID = (jobId) => {
     return fetch(`https://jobs.github.com/positions/${jobId}.json`)
         .then(response => response.json())
 }
 
 export default {
-    findJobsByTitle, findMovieByImdbID
+    findJobsByTitle, findJobByID
 }
