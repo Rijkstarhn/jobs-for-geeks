@@ -4,23 +4,31 @@ import jobService from "../services/job-service"
 
 const SearchScreen = () => {
     const history = useHistory()
-    const {title} = useParams()
-    const [searchTitle, setSearchTitle] = useState(title)
-    const [searchLocation, setSearchLocation] = useState('')
+    const {description, location} = useParams()
+    const [searchDescription, setSearchDescription] = useState(description)
+    const [searchLocation, setSearchLocation] = useState(location)
+    const [isFullTime, setIsFullTime] = useState('')
     const [results, setResults] = useState(undefined)
     useEffect(() => {
-        setSearchTitle(title)
-        findJobsByTitle(title)
+        setSearchDescription(description)
+        setSearchLocation(location)
+        findJobs(description, location)
     }, [])
-    const findJobsByTitle = (title) => {
-        history.push(`/search/${title}`)
-        jobService.findJobsByTitle(title)
+    const findJobs = (description, location) => {
+        if (description === undefined || description === "") {
+            description = "+"
+        }
+        if (location === undefined || location === "") {
+            location = "+"
+        }
+        history.push(`/search/${description}/${location}`)
+        jobService.findJobs(description, location)
             .then((results) => {
                 setResults(results)
             })
     }
     const handleSubmit = () => {
-        findJobsByTitle(searchTitle);
+        findJobs(searchDescription, searchLocation);
     }
     const handleKeypress = e => {
         //it triggers by pressing the enter key
@@ -36,14 +44,14 @@ const SearchScreen = () => {
             <div className="row">
                 <div className="col-4">
                     <h6>Job Description</h6>
-                        <input value={searchTitle}
-                               onChange={(event) => {
-                                   setSearchTitle(event.target.value)
-                               }}
-                               onKeyPress = {
-                                   handleKeypress
-                               }
-                               className="form-control"/>
+                    <input value={searchDescription}
+                           onChange={(event) => {
+                               setSearchDescription(event.target.value)
+                           }}
+                           onKeyPress = {
+                               handleKeypress
+                           }
+                           className="form-control"/>
                 </div>
                 <div className="col-4">
                     <h6>Location</h6>
@@ -64,7 +72,7 @@ const SearchScreen = () => {
                 <div className="col-2 relativePosition">
                     <button
                         onClick={() => {
-                            findJobsByTitle(searchTitle)
+                            findJobs(searchDescription, searchLocation)
                         }}
                         className="btn btn-primary btn-block searchButton">
                         Search

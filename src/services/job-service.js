@@ -1,5 +1,5 @@
-const findJobsByTitle = (title) => {
-    return fetch(`https://jobs.github.com/positions.json?description=${title}&page=1`)
+const findJobs = (description, location) => {
+    return fetch(`https://jobs.github.com/positions.json?description=${description}&location=${location}&page=1`)
         .then(response => response.json())
 }
 
@@ -9,5 +9,5 @@ const findJobByID = (jobId) => {
 }
 
 export default {
-    findJobsByTitle, findJobByID
+    findJobs, findJobByID
 }

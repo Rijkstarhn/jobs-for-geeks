@@ -10,7 +10,7 @@ function App() {
             <Route path="/" exact={true}>
                 <HomeScreen/>
             </Route>
-            <Route path={["/search", "/search/:title"]}
+            <Route path={["/search", "/search/:description?/:location?"]}
                    exact={true}>
                 <SearchScreen/>
             </Route>
