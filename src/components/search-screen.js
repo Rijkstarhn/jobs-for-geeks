@@ -37,7 +37,6 @@ const SearchScreen = () => {
             handleSubmit();
         }
     };
-    console.log(isFullTime)
     return(
         <div>
             <br/>
