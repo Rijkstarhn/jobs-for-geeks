@@ -37,6 +37,7 @@ const SearchScreen = () => {
             handleSubmit();
         }
     };
+    console.log(isFullTime)
     return(
         <div>
             <br/>
@@ -69,7 +70,7 @@ const SearchScreen = () => {
                     <label className = 'checkboxPosition'>Full Time Only
                         <input type="checkbox" className = 'checkboxMargin'
                                defaultChecked={false}
-                               onClick={() => {setIsFullTime(true)}}
+                               onClick={() => {setIsFullTime(!isFullTime)}}
                         />
                     </label>
                 </div>
