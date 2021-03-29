@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
-import jobService from "../services/movie-service"
+import jobService from "../services/job-service"
 
 const SearchScreen = () => {
     const history = useHistory()
     const {title} = useParams()
     const [searchTitle, setSearchTitle] = useState(title)
+    const [searchLocation, setSearchLocation] = useState('')
     const [results, setResults] = useState(undefined)
     useEffect(() => {
         setSearchTitle(title)
@@ -29,24 +30,43 @@ const SearchScreen = () => {
     };
     return(
         <div>
+            <br/>
             <h2>Search Screen</h2>
+            <br/>
             <div className="row">
-                <div className="col-9">
-                    <input value={searchTitle}
+                <div className="col-4">
+                    <h6>Job Description</h6>
+                        <input value={searchTitle}
+                               onChange={(event) => {
+                                   setSearchTitle(event.target.value)
+                               }}
+                               onKeyPress = {
+                                   handleKeypress
+                               }
+                               className="form-control"/>
+                </div>
+                <div className="col-4">
+                    <h6>Location</h6>
+                    <input value={searchLocation}
                            onChange={(event) => {
-                               setSearchTitle(event.target.value)
+                               setSearchLocation(event.target.value)
                            }}
                            onKeyPress = {
                                handleKeypress
                            }
                            className="form-control"/>
                 </div>
-                <div className="col-3">
+                <div className="col-2 relativePosition">
+                    <label className = 'checkboxPosition'>Full Time Only
+                        <input type="checkbox" className = 'checkboxMargin'/>
+                    </label>
+                </div>
+                <div className="col-2 relativePosition">
                     <button
                         onClick={() => {
                             findJobsByTitle(searchTitle)
                         }}
-                        className="btn btn-primary btn-block">
+                        className="btn btn-primary btn-block searchButton">
                         Search
                     </button>
                 </div>

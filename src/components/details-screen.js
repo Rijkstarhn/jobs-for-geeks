@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Link, useHistory, useParams} from 'react-router-dom'
-import movieService from '../services/movie-service'
+import movieService from '../services/job-service'
 
 const DetailsScreen = () => {
     const {jobId} = useParams()
@@ -24,7 +24,7 @@ const DetailsScreen = () => {
                 <img className='float-right companyIcon' src={`${job.company_logo}`} width = {150} height={150}/>
             </h2>
 
-            <h6>{job.company}</h6>
+            <h6 className='inlineHeading'>{job.company}</h6>
             <a href = {`${job.company_url}`}>{job.company_url}</a>
             {/*<div className='row'>*/}
             {/*    <div className = 'col-2'>*/}
@@ -35,11 +35,11 @@ const DetailsScreen = () => {
             {/*    </div>*/}
             {/*</div>*/}
             <br/>
-            <h6>Location:</h6>
+            <h6 className='inlineHeading'>Location:</h6>
             {job.location}
             <br/>
             <br/>
-            <h6>Job Description</h6>
+            <h6 className='inlineHeading'>Job Description</h6>
             <div dangerouslySetInnerHTML={{__html: job.description}} />
             <button className='btn btn-primary' onClick={()=>{history.goBack()}}>Back</button>
         </div>
