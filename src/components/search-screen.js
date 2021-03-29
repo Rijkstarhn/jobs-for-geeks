@@ -46,6 +46,7 @@ const SearchScreen = () => {
                 <div className="col-4">
                     <h6>Job Description</h6>
                     <input value={searchDescription}
+                           placeholder={'e.g. C'}
                            onChange={(event) => {
                                setSearchDescription(event.target.value)
                            }}
@@ -57,6 +58,7 @@ const SearchScreen = () => {
                 <div className="col-4">
                     <h6>Location</h6>
                     <input value={searchLocation}
+                           placeholder={'e.g. sf'}
                            onChange={(event) => {
                                setSearchLocation(event.target.value)
                            }}
