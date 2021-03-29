@@ -7,14 +7,15 @@ const SearchScreen = () => {
     const {description, location} = useParams()
     const [searchDescription, setSearchDescription] = useState(description)
     const [searchLocation, setSearchLocation] = useState(location)
-    const [isFullTime, setIsFullTime] = useState('')
+    const [isFullTime, setIsFullTime] = useState(false)
     const [results, setResults] = useState(undefined)
     useEffect(() => {
         setSearchDescription(description)
         setSearchLocation(location)
+        setIsFullTime(false)
         findJobs(description, location)
     }, [])
-    const findJobs = (description, location) => {
+    const findJobs = (description, location, isFullTime) => {
         if (description === undefined || description === "") {
             description = "+"
         }
@@ -22,13 +23,13 @@ const SearchScreen = () => {
             location = "+"
         }
         history.push(`/search/${description}/${location}`)
-        jobService.findJobs(description, location)
+        jobService.findJobs(description, location, isFullTime)
             .then((results) => {
                 setResults(results)
             })
     }
     const handleSubmit = () => {
-        findJobs(searchDescription, searchLocation);
+        findJobs(searchDescription, searchLocation, isFullTime);
     }
     const handleKeypress = e => {
         //it triggers by pressing the enter key
@@ -66,13 +67,16 @@ const SearchScreen = () => {
                 </div>
                 <div className="col-2 relativePosition">
                     <label className = 'checkboxPosition'>Full Time Only
-                        <input type="checkbox" className = 'checkboxMargin'/>
+                        <input type="checkbox" className = 'checkboxMargin'
+                               defaultChecked={false}
+                               onClick={() => {setIsFullTime(true)}}
+                        />
                     </label>
                 </div>
                 <div className="col-2 relativePosition">
                     <button
                         onClick={() => {
-                            findJobs(searchDescription, searchLocation)
+                            findJobs(searchDescription, searchLocation, isFullTime)
                         }}
                         className="btn btn-primary btn-block searchButton">
                         Search
