@@ -5,6 +5,10 @@ const HomeScreen = () => {
     return(
         <div>
             <h2>Home Screen</h2>
+            <Link to="/login">
+                Login
+            </Link>
+            <br/>
             <Link to="/search">
                 Search
             </Link>
