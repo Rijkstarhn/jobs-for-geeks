@@ -17,7 +17,7 @@ function App() {
             <Route path="/login" exact={true}>
                 <LoginScreen/>
             </Route>
-            <Route path="/profile" exact={true}>
+            <Route path="/profile/:userId" exact={true}>
                 <ProfileScreen/>
             </Route>
             <Route path="/register" exact={true}>
