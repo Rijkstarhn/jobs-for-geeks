@@ -102,13 +102,13 @@ const SearchScreen = () => {
             </Link>
           </div>
           <div className="col-sm-3">
-            <Link className="searchMenu" to={`/details/`}>
-              My Applied Jobs
+            <Link className="searchMenu" to={`/123/myjob`}>
+              My Jobs
             </Link>
           </div>
 
           <div className="col-sm-3">
-            <Link className="searchMenu" to={`/details/`}>
+            <Link className="searchMenu" to={`/123/candidates`}>
               My Saved Candidates
             </Link>
           </div>
