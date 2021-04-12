@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from "react-router-dom";
+import UserRow from "./user-row";
 
 
 const users = [
@@ -17,6 +18,8 @@ const users = [
     education: "",
     experience: "",
     license: "",
+    notes:"contacted"
+
   },
   {id: "223",
     username: "User2",
@@ -31,6 +34,7 @@ const users = [
     education: "",
     experience: "",
     license: "",
+    notes:"interested"
   }
 
 ]
@@ -51,10 +55,9 @@ const UserTable = () => {
 
             {
               users.map((user, ndx) =>
-                  <h1>user.username</h1>
+                  <UserRow user={user}/>
               )
             }
-
             </tbody>
           </table>
         </div>
