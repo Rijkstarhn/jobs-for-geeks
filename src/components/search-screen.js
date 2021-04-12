@@ -91,7 +91,7 @@ const SearchScreen = () => {
         <div className="row">
 
           <div className="col-sm-3">
-            <Link className="allUsers" to={`/details/`}>
+            <Link className="allUsers" to={`/userlist`}>
               View All Users
             </Link>
           </div>

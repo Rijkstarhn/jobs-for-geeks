@@ -5,6 +5,8 @@ import HomeScreen from "./components/home-screen";
 import LoginScreen from "./components/login-screen";
 import ProfileScreen from "./components/profile-screen";
 import RegisterScreen from "./components/register-screen";
+import UserList from "./components/users/user-list";
+import UserDetail from "./components/users/user-detail";
 
 
 function App() {
@@ -23,7 +25,17 @@ function App() {
             <Route path="/register" exact={true}>
                 <RegisterScreen/>
             </Route>
-            <Route path={["/search", "/search/:description?/:location?"]}
+
+          <Route path="/userlist" exact={true}>
+            <UserList/>
+          </Route>
+
+          <Route path="/userDetail/:userId" exact={true}>
+            <UserDetail/>
+          </Route>
+
+
+          <Route path={["/search", "/search/:description?/:location?"]}
                    exact={true}>
                 <SearchScreen/>
             </Route>
