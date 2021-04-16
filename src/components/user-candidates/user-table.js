@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import UserRow from "./user-row";
 
 
@@ -40,9 +40,16 @@ const users = [
 ]
 
 const UserTable = () => {
+  const history = useHistory()
   return (
       <>
-        <h1>My candidates list</h1>
+        <h1>
+          <div onClick={() => history.goBack()}
+               className="btn btn-primary">
+            <i className="fas fa-arrow-left fa-2x"/>
+          </div>
+          My candidates list
+        </h1>
         <div className="container dy-table">
           <table className="table">
             <tbody>

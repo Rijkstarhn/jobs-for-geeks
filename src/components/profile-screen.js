@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 const user = {
   username: "Alice",
@@ -21,13 +21,20 @@ const ProfileScreen = () => {
   const [cachedItem, setCashedItem] = useState(user)
   const [password, setPassword] = useState(user.password)
   const [update, setUpdate] = useState(false)
+  const history = useHistory()
 
   const handleUpdate = () => {
     setUpdate(true)
   }
   return (
       <div className="container">
-        <h1 className="mb-3">Profile</h1>
+        <h1 className="mb-3">
+          <div onClick={() => history.goBack()}
+                  className="btn btn-primary">
+            <i className="fas fa-arrow-left fa-2x"/>
+          </div>
+          Profile
+        </h1>
         <form>
           {update && <div className="form-group row">
             <label className="col-sm-7 col-form-label">

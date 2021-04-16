@@ -4,7 +4,12 @@ import {Link} from "react-router-dom";
 const LoginScreen = () => {
     return (
         <div className="container">
-            <h1 className="title mb-3">Sign In</h1>
+            <h1 className="title mb-3">
+                <Link to="/">
+                    <i className="fas fa-home"/>
+                </Link>
+                Sign In
+            </h1>
             <form>
                 <div className="form-group row mb-3">
                     <label className="col-sm-1 col-form-label" htmlFor="username">

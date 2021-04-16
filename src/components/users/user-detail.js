@@ -1,14 +1,21 @@
 import React, {useState} from 'react'
-import {Link, useLocation} from "react-router-dom";
+import {Link, useHistory, useLocation} from "react-router-dom";
 
 const UserDetail = () => {
   const location = useLocation();
   const user = location.state.user;
   const [type, setType] = useState("interested")
+    const history = useHistory()
 
   return (
       <div className="container">
-        <h1 className="mb-3">User Detail</h1>
+        <h1 className="mb-3">
+            <div onClick={() => history.goBack()}
+                 className="btn btn-primary">
+                <i className="fas fa-arrow-left fa-2x"/>
+            </div>
+            User Detail
+        </h1>
 
 
         <div className="form-group row mb-3">

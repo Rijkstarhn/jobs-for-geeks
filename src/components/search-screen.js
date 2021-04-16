@@ -40,7 +40,12 @@ const SearchScreen = () => {
   return (
       <div>
         <br/>
-        <h2>Search Screen</h2>
+        <h2>
+            <Link to="/">
+                <i className="fas fa-home"/>
+            </Link>
+            Search Screen
+        </h2>
         <br/>
         <div className="row">
           <div className="col-sm-4">
