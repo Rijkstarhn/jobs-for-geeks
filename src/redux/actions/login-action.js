@@ -14,9 +14,9 @@ export const loginNetworkError = () => ({
   type: "LOGIN_NETWORK_ERROR",
 });
 
-export const logout = () => ({
-  type: "LOGOUT",
-});
+export const logout = (dispatch) => {
+  dispatch({type: "LOGOUT"})
+};
 
 export const login = (dispatch, user) => {
   userService.login(user)
@@ -36,7 +36,7 @@ export const login = (dispatch, user) => {
 }
 
 const loginActions = {
-  login
+  login, logout
 
 }
 export default loginActions

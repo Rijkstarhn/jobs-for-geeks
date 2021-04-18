@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import {Link, useHistory} from "react-router-dom";
+import loginActions from "../redux/actions/login-action";
+import {connect} from "react-redux";
 
 const user = {
   username: "Alice",
@@ -16,7 +18,7 @@ const user = {
   license: "",
 }
 
-const ProfileScreen = () => {
+const ProfileScreen = ({logout}) => {
 
   const [cachedItem, setCashedItem] = useState(user)
   const [password, setPassword] = useState(user.password)
@@ -243,7 +245,7 @@ const ProfileScreen = () => {
             <label className="col-sm-1 col-form-label"></label>
             <div className="col-sm-6">
               <Link to="/" className="btn btn-danger col-12 mb-0"
-                    id="logoutBtn">
+                    id="logoutBtn" onClick={() => logout()}>
                 Logout
               </Link>
             </div>
@@ -253,4 +255,9 @@ const ProfileScreen = () => {
   )
 }
 
-export default ProfileScreen;
+
+const dispatchPropsMapper = (dispatch) => ({
+  logout: () => loginActions.logout(dispatch)
+})
+
+export default connect(null, dispatchPropsMapper)(ProfileScreen)
