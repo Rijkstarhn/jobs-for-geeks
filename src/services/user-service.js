@@ -20,7 +20,7 @@ export const login = (user) => {
             'content-type': 'application/json'
         }
     })
-        .then(response => response.json()).catch(error => console.log("error"))
+        .then(response => response.json()).catch(error => console.log("login error"))
 }
 
 const register = (regInfo) => {
@@ -33,7 +33,6 @@ const register = (regInfo) => {
             'content-type': 'application/json'
         }
     })
-        .then(response => response.json()).catch(error => console.log("error"))
 }
 
 
