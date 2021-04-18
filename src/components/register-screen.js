@@ -25,17 +25,27 @@ const RegisterScreen = () => {
   const [userName, setUserName] = useState("")
   const [password, setPassword] = useState("")
   const [verifyPassword, setVerifyPassword] = useState("")
-  const [role, setRole] = useState("")
+  const [role, setRole] = useState("JOB SEEKER")
 
   const handleSignUp = () => {
     let registerInfo = {};
     registerInfo.username = userName;
     registerInfo.password = password;
     registerInfo.role = role;
-    // console.log('cachedItem', userName);
+    // console.log('cachedItem', registerInfo);
     // alert(registerInfo);
     userService.register(registerInfo)
-        .then(response => alert(response))
+        .then(response => {
+          console.log("response after click register button", response)
+          alert('ffffff')
+        })
+        // .then(response => {
+        //   if (response) {
+        //     alert("Congratulations! Successfully Registered!")
+        //   } else {
+        //     alert("Username already exists!!")
+        //   }
+        // })
   }
 
   return (
@@ -151,8 +161,8 @@ const RegisterScreen = () => {
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
               >
-                <option value="job-seeker">Job Seeker</option>
-                <option value="recruiter">Recruiter</option>
+                <option value="JOB SEEKER">Job Seeker</option>
+                <option value="RECRUITER">Recruiter</option>
               </select>
             </div>
           </div>
