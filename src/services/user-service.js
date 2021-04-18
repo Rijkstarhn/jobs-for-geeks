@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const API_URL = "http://localhost:4000/api/users";
 
 export const findAllUsers = () =>
@@ -44,3 +45,18 @@ export default {
     findUserForUsername,
     findAllUsers
 };
+=======
+const findAllUsers = () => {
+    return fetch(`https://localhost:4000/api/users`)
+        .then(response => response.json())
+}
+
+const findUserByName = (name) => {
+    return fetch(`https://localhost:4000/api/users/${name}`)
+        .then(response => response.json())
+}
+
+export default {
+    findAllUsers, findUserByName,
+}
+>>>>>>> 45372905d0bce2ad286fc6e733035604110e3841
