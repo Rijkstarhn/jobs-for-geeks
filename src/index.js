@@ -5,12 +5,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import {combineReducers, createStore} from "redux";
+import {Provider} from "react-redux";
+import {loginReducer} from "./redux/reducers/login-reducer";
+import {userReducer} from "./redux/reducers/user-reducer";
+
+const reducer = combineReducers({
+  loginReducer:loginReducer,
+  userReducer:userReducer
+})
+const store = createStore(reducer)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <Provider store={store}>
+
+        <App/>
+
+    </Provider>,
+
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

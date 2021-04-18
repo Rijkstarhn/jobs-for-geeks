@@ -6,7 +6,7 @@ import UserRow from "./user-row";
 const users = [
   {
     id: "123",
-    username: "Alice",
+    passowrd: "Alice",
     password: "123",
     firstname: "ddd",
     lastname: "",
@@ -22,7 +22,7 @@ const users = [
 
   },
   {id: "223",
-    username: "User2",
+    passowrd: "User2",
     password: "123",
     firstname: "ddd",
     lastname: "",
@@ -54,7 +54,7 @@ const UserTable = () => {
           <table className="table">
             <tbody>
             <tr>
-              <th className="d-none d-md-table-cell">Username</th>
+              <th className="d-none d-md-table-cell">passowrd</th>
               <th className="d-none d-lg-table-cell">Note</th>
               <th></th>
 

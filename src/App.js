@@ -9,6 +9,7 @@ import UserList from "./components/users/user-list";
 import UserDetail from "./components/users/user-detail";
 import JobTable from "./components/user-jobs/job-table";
 import UserTable from "./components/user-candidates/user-table";
+import Login from "./components/login";
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
                 <HomeScreen/>
             </Route>
             <Route path="/login" exact={true}>
-                <LoginScreen/>
+                <Login/>
             </Route>
             <Route path="/profile/:userId" exact={true}>
                 <ProfileScreen/>
