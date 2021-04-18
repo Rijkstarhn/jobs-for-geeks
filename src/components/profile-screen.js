@@ -3,22 +3,22 @@ import {Link, useHistory} from "react-router-dom";
 import loginActions from "../redux/actions/login-action";
 import {connect} from "react-redux";
 
-const user = {
-  username: "Alice",
-  password: "123",
-  firstname: "ddd",
-  lastname: "",
-  role: "recruiter",
-  email: "dddd@gmail.com",
-  phone: "1234557",
-  company: "",
-  skills: "",
-  education: "",
-  experience: "",
-  license: "",
-}
+// const user = {
+//   username: "Alice",
+//   password: "123",
+//   firstname: "ddd",
+//   lastname: "",
+//   role: "recruiter",
+//   email: "dddd@gmail.com",
+//   phone: "1234557",
+//   company: "",
+//   skills: "",
+//   education: "",
+//   experience: "",
+//   license: "",
+// }
 
-const ProfileScreen = ({logout}) => {
+const ProfileScreen = ({logout, user}) => {
 
   const [cachedItem, setCashedItem] = useState(user)
   const [password, setPassword] = useState(user.password)
@@ -149,11 +149,11 @@ const ProfileScreen = ({logout}) => {
             <div className="col-sm-6">
               <select className="form-control form-select-lg mb-3"
                       aria-label=".form-select-lg example"
-                      value={cachedItem.role}
+                      value={cachedItem.type}
                       disabled={true}>
 
-                <option value="job-seeker">Job Seeker</option>
-                <option value="recruiter">Recruiter</option>
+                <option value="JOB SEEKER">Job Seeker</option>
+                <option value="RECRUITER">Recruiter</option>
               </select>
             </div>
           </div>
@@ -255,9 +255,14 @@ const ProfileScreen = ({logout}) => {
   )
 }
 
-
+const stateToPropsMapper = (state) => {
+  return {
+    user: state.userReducer
+  }
+}
 const dispatchPropsMapper = (dispatch) => ({
   logout: () => loginActions.logout(dispatch)
+
 })
 
-export default connect(null, dispatchPropsMapper)(ProfileScreen)
+export default connect(stateToPropsMapper, dispatchPropsMapper)(ProfileScreen)
