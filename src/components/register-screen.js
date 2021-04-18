@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
+import userService from "../services/user-service";
 
-const user = {
+const userInitial = {
   username: "",
   password: "",
   firstname: "",
@@ -18,8 +19,25 @@ const user = {
 }
 
 const RegisterScreen = () => {
-  const [cachedItem, setCashedItem] = useState(user)
+  // const [user, setUser] = useState(userInitial);
+  // const [cachedItem, setCashedItem] = useState(user)
+
+  const [userName, setUserName] = useState("")
   const [password, setPassword] = useState("")
+  const [verifyPassword, setVerifyPassword] = useState("")
+  const [role, setRole] = useState("")
+
+  const handleSignUp = () => {
+    let registerInfo = {};
+    registerInfo.username = userName;
+    registerInfo.password = password;
+    registerInfo.role = role;
+    // console.log('cachedItem', userName);
+    // alert(registerInfo);
+    userService.register(registerInfo)
+        .then(response => alert(response))
+  }
+
   return (
       <div className="container">
         <h1 className="mb-3">
@@ -36,9 +54,8 @@ const RegisterScreen = () => {
             <div className="col-sm-6">
               <input className="form-control" id="usernameFld"
                      placeholder="Alice"
-                     value={cachedItem.username}
-                     onChange={(e) => setCashedItem(
-                         {...cachedItem, username: e.target.value})}/>
+                     value={userName}
+                     onChange={(e) => setUserName(e.target.value)}/>
             </div>
           </div>
 
@@ -49,9 +66,8 @@ const RegisterScreen = () => {
             <div className="col-sm-6">
               <input className="form-control" id="passwordFld"
                      placeholder="123qwe#$%" type="password"
-                     value={cachedItem.password}
-                     onChange={(e) => setCashedItem(
-                         {...cachedItem, password: e.target.value})}/>
+                     value={password}
+                     onChange={(e) => setPassword(e.target.value)}/>
             </div>
           </div>
 
@@ -62,9 +78,9 @@ const RegisterScreen = () => {
             <div className="col-sm-6">
               <input className="form-control" id="verifyPasswordFld"
                      placeholder="123qwe#$%" type="password"
-                     value={password}
-                     onChange={(e) => setPassword(e.target.value)}/>
-              {password.length > 0 && password !== cachedItem.password && (
+                     value={verifyPassword}
+                     onChange={(e) => setVerifyPassword(e.target.value)}/>
+              {verifyPassword.length > 0 && password !== verifyPassword && (
                   <div className="alert alert-danger">
                     password and verified password don't match
                   </div>
@@ -132,9 +148,8 @@ const RegisterScreen = () => {
             <div className="col-sm-6">
               <select className="form-control form-select-lg mb-3"
                       aria-label=".form-select-lg example"
-                      value={cachedItem.role}
-                      onChange={(e) => setCashedItem(
-                          {...cachedItem, role: e.target.value})}
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
               >
                 <option value="job-seeker">Job Seeker</option>
                 <option value="recruiter">Recruiter</option>
@@ -223,10 +238,10 @@ const RegisterScreen = () => {
             <label className="col-sm-2 col-form-label">
             </label>
             <div className="col-sm-4">
-              <Link to="/profile" className="btn btn-primary btn-block"
-                    id="registerBtn">
+              <button className="btn btn-primary btn-block"
+                    id="registerBtn" onClick = {() => handleSignUp()}>
                 Sign up
-              </Link>
+              </button>
             </div>
           </div>
 

@@ -1,5 +1,4 @@
 const INITIAL_STATE = {
-  user:{}
 }
 
 export const userReducer = (state = INITIAL_STATE, action) => {

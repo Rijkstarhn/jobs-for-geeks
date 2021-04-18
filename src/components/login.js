@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import loginActions from "../redux/actions/login-action";
 import {LOGIN_STATE} from "../redux/storeConstants";
 import {connect} from "react-redux";
-import Redirect from "react-router-dom/es/Redirect";
 
 const Login = ({login, status, user}) => {
   const [username, setUsername] = useState("");
@@ -72,6 +72,9 @@ const Login = ({login, status, user}) => {
             <button className="btn btn-secondary float-end" onClick={handleLogin}>
               Log in
             </button>
+            <Link to = "/register" className="btn btn-secondary buttonMargin">
+                Sign up
+            </Link>
             {status === LOGIN_STATE.LOGGED_IN && <Redirect push to={`/profile/${user._id}`}/>
             }
           </div>
