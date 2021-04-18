@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useHistory, useParams} from 'react-router-dom'
-import jobService from '../services/job-service'
+import jobService from '../services/job-search-service'
 
 const isValidHttpUrl = (string) => {
     let url;

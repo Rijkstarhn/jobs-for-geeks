@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
-import jobService from "../services/job-service"
+import jobService from "../services/job-search-service"
 
 const SearchScreen = () => {
   const history = useHistory()
