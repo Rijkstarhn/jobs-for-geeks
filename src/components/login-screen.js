@@ -24,8 +24,6 @@ const LoginScreen = ({
         setPassword("");
     };
 
-    console.log("user", user)
-    console.log("status", status)
 
     return (
         <div className="container">

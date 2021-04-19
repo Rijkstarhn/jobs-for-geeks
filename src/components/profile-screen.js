@@ -141,7 +141,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
             <div className="col-sm-6">
               <select className="form-control form-select-lg mb-3"
                       aria-label=".form-select-lg example"
-                      value={cachedItem.type}
+                      value={cachedItem.role}
                       disabled={true}>
 
                 <option value="JOB SEEKER">Job Seeker</option>
