@@ -41,6 +41,9 @@ const SearchScreen = ({user={},
       handleSubmit();
     }
   };
+
+  console.log("user", user)
+  console.log("status", status)
   return (
       <div>
         <br/>
@@ -111,23 +114,28 @@ const SearchScreen = ({user={},
               View All Users
             </Link>
           </div>
-          <div className="col-sm-3">
 
-            <Link className="searchMenu" to={`/profile/123`}>
+          {status === LOGIN_STATE.LOGGED_IN && <div className="col-sm-3">
+
+            <Link className="searchMenu" to={`/profile/${user._id}`}>
               My profile
             </Link>
-          </div>
+          </div>}
+
+
+          {status === LOGIN_STATE.LOGGED_IN && user.role === "JOB SEEKER" &&
           <div className="col-sm-3">
-            <Link className="searchMenu" to={`/123/myjob`}>
+            <Link className="searchMenu" to={`/${user._id}/myjob`}>
               My Jobs
             </Link>
-          </div>
+          </div>}
 
-          <div className="col-sm-3">
-            <Link className="searchMenu" to={`/123/candidates`}>
+          {status === LOGIN_STATE.LOGGED_IN && user.role === "RECRUITER" && <div className="col-sm-3">
+            <Link className="searchMenu" to={`/${user._id}/candidates`}>
               My Saved Candidates
             </Link>
-          </div>
+          </div>}
+
         </div>
 
 
@@ -157,7 +165,7 @@ const SearchScreen = ({user={},
 const stateToPropsMapper = (state) => {
   return {
     status: state.loginReducer,
-    user: state.useReducer
+    user: state.userReducer
   }
 }
 
