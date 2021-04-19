@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
 import jobService from "../services/job-search-service"
+import loginActions, {logout} from "../redux/actions/login-action";
+import {connect} from "react-redux";
+import {LOGIN_STATE} from "../redux/storeConstants";
 
-const SearchScreen = () => {
+const SearchScreen = ({user={},
+  status, logout}) => {
   const history = useHistory()
   const {description, location} = useParams()
   const [searchDescription, setSearchDescription] = useState(description)
@@ -44,6 +48,13 @@ const SearchScreen = () => {
             <Link to="/">
                 <i className="fas fa-home"/>
             </Link>
+          {status === LOGIN_STATE.LOGGED_OUT && <Link className="btn btn-outline-primary float-right" to="/login">
+            Login
+          </Link>}
+
+          {status === LOGIN_STATE.LOGGED_IN&& <a className="btn btn-outline-primary float-right" to="/login" onClick={() => logout()}>
+            Logout
+          </a>}
             Search Screen
         </h2>
         <br/>
@@ -143,5 +154,15 @@ const SearchScreen = () => {
       </div>
   )
 }
+const stateToPropsMapper = (state) => {
+  return {
+    status: state.loginReducer,
+    user: state.useReducer
+  }
+}
 
-export default SearchScreen
+const dispatchPropsMapper = (dispatch) => ({
+  logout: () => loginActions.logout(dispatch)
+})
+
+export default connect(stateToPropsMapper, dispatchPropsMapper)(SearchScreen)

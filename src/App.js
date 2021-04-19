@@ -10,6 +10,8 @@ import UserDetail from "./components/users/user-detail";
 import JobTable from "./components/user-jobs/job-table";
 import UserTable from "./components/user-candidates/user-table";
 import Login from "./components/login";
+import Redirect from "react-router-dom/es/Redirect";
+import React from "react";
 
 
 function App() {
@@ -17,7 +19,7 @@ function App() {
     <div className="container-fluid">
         <BrowserRouter>
             <Route path="/" exact={true}>
-                <HomeScreen/>
+                <Redirect to={"/search"}/>
             </Route>
             <Route path="/login" exact={true}>
                 <Login/>

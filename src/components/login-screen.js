@@ -9,7 +9,6 @@ import {connect} from "react-redux";
 const LoginScreen = ({
     user={},
     status,
-    login
 }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");

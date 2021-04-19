@@ -31,10 +31,10 @@ const ProfileScreen = ({logout, user}) => {
   return (
       <div className="container">
         <h1 className="mb-3">
-          <div onClick={() => history.goBack()}
+          <Link to="/search"
                   className="btn btn-primary">
             <i className="fas fa-arrow-left fa-2x"/>
-          </div>
+          </Link>
           Profile
         </h1>
         <form>
@@ -257,7 +257,7 @@ const ProfileScreen = ({logout, user}) => {
 
 const stateToPropsMapper = (state) => {
   return {
-    user: state.userReducer
+    user: state.userReducer,
   }
 }
 const dispatchPropsMapper = (dispatch) => ({
