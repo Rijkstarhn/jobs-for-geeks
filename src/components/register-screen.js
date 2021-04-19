@@ -1,22 +1,8 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import userService from "../services/user-service";
-
-const userInitial = {
-  username: "",
-  password: "",
-  firstname: "",
-  lastname: "",
-  role: "job-seeker",
-  email: "",
-  phone: "",
-  company: "",
-  skills: "",
-  education: "",
-  experience: "",
-  license: "",
-
-}
+import {LOGIN_STATE} from "../redux/storeConstants";
+let editing = false;
 
 const RegisterScreen = () => {
   // const [user, setUser] = useState(userInitial);
@@ -26,8 +12,10 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState("")
   const [verifyPassword, setVerifyPassword] = useState("")
   const [role, setRole] = useState("JOB SEEKER")
+  const [registerStatus, setRegisterStatus] = useState("")
 
   const handleSignUp = () => {
+    editing = false;
     let registerInfo = {};
     registerInfo.username = userName;
     registerInfo.password = password;
@@ -36,16 +24,15 @@ const RegisterScreen = () => {
     // alert(registerInfo);
     userService.register(registerInfo)
         .then(response => {
-          console.log("response after click register button", response)
-          alert('ffffff')
+          console.log("response", response)
+          //alert('ffffff')
+          // if(response) {
+          //   setRegisterStatus("success")
+          // }else{
+          //   setRegisterStatus("fail")
+          // }
         })
-        // .then(response => {
-        //   if (response) {
-        //     alert("Congratulations! Successfully Registered!")
-        //   } else {
-        //     alert("Username already exists!!")
-        //   }
-        // })
+
   }
 
   return (
@@ -65,7 +52,10 @@ const RegisterScreen = () => {
               <input className="form-control" id="usernameFld"
                      placeholder="Alice"
                      value={userName}
-                     onChange={(e) => setUserName(e.target.value)}/>
+                     onChange={(e) => {
+                       editing = true;
+                       setUserName(e.target.value)
+                     }}/>
             </div>
           </div>
 
@@ -77,7 +67,10 @@ const RegisterScreen = () => {
               <input className="form-control" id="passwordFld"
                      placeholder="123qwe#$%" type="password"
                      value={password}
-                     onChange={(e) => setPassword(e.target.value)}/>
+                     onChange={(e) => {
+                       editing = true;
+                       setPassword(e.target.value)
+                     }}/>
             </div>
           </div>
 
@@ -98,58 +91,6 @@ const RegisterScreen = () => {
             </div>
           </div>
 
-          {/*<div className="form-group row mb-3">*/}
-          {/*  <label className="col-sm-2 col-form-label">*/}
-          {/*    First Name*/}
-          {/*  </label>*/}
-          {/*  <div className="col-sm-6">*/}
-          {/*    <input className="form-control" id="firstname"*/}
-          {/*           placeholder="John" type="text"*/}
-          {/*           value={cachedItem.firstname}*/}
-          {/*           onChange={(e) => setCashedItem(*/}
-          {/*               {...cachedItem, firstname: e.target.value})}*/}
-          {/*    />*/}
-          {/*  </div>*/}
-          {/*</div>*/}
-
-          {/*<div className="form-group row mb-3">*/}
-          {/*  <label className="col-sm-2 col-form-label">*/}
-          {/*    Last Name*/}
-          {/*  </label>*/}
-          {/*  <div className="col-sm-6">*/}
-          {/*    <input className="form-control" id="lastname"*/}
-          {/*           placeholder="Doe"*/}
-          {/*           value={cachedItem.lastname}*/}
-          {/*           onChange={(e) => setCashedItem(*/}
-          {/*               {...cachedItem, lastname: e.target.value})}*/}
-          {/*    />*/}
-          {/*  </div>*/}
-          {/*</div>*/}
-
-          {/*<div className="form-group row mb-3">*/}
-          {/*  <label htmlFor="exampleInputEmail1" className="form-label col-sm-2 ">*/}
-          {/*    Address</label>*/}
-          {/*  <div className="col-sm-6">*/}
-          {/*    <input type="email" className="form-control"*/}
-          {/*           id="exampleInputEmail1" aria-describedby="emailHelp"*/}
-          {/*           value={cachedItem.email}*/}
-          {/*           onChange={(e) => setCashedItem(*/}
-          {/*               {...cachedItem, email: e.target.value})}/>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
-
-
-          {/*<div className="form-group row mb-3">*/}
-          {/*  <label className="form-label col-sm-2 " htmlFor="phone">Phone number:</label>*/}
-
-          {/*  <div className="col-sm-6">*/}
-          {/*    <input className="form-control" type="tel" id="phone" name="phone"*/}
-          {/*           value={cachedItem.phone}*/}
-          {/*           onChange={(e) => setCashedItem(*/}
-          {/*               {...cachedItem, phone: e.target.value})}/>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
-
 
           <div className="form-group row mb-3">
             <label className="col-sm-2 col-form-label" htmlFor="role-select">
@@ -167,93 +108,25 @@ const RegisterScreen = () => {
             </div>
           </div>
 
-          {/*{cachedItem.role === "job-seeker" && (*/}
-          {/*    <>*/}
-          {/*      <div className="form-group row mb-3">*/}
-          {/*        <label className="col-sm-2 col-form-label">*/}
-          {/*          Education*/}
-          {/*        </label>*/}
-          {/*        <div className="col-sm-6">*/}
-          {/*          <input className="form-control" id="education"*/}
-          {/*                 placeholder="Northeastern University"*/}
-          {/*                 value={cachedItem.education}*/}
-          {/*                 onChange={(e) => setCashedItem(*/}
-          {/*                     {...cachedItem, education: e.target.value})}/>*/}
-          {/*        </div>*/}
-          {/*      </div>*/}
-
-          {/*      <div className="form-group row mb-3">*/}
-          {/*        <label className="col-sm-2 col-form-label">*/}
-          {/*          Skills*/}
-          {/*        </label>*/}
-          {/*        <div className="col-sm-6">*/}
-          {/*          <input className="form-control" id="skills"*/}
-          {/*                 placeholder="Java, Python..."*/}
-          {/*                 value={cachedItem.skills}*/}
-          {/*                 onChange={(e) => setCashedItem(*/}
-          {/*                     {...cachedItem, skills: e.target.value})}/>*/}
-          {/*        </div>*/}
-          {/*      </div>*/}
-
-          {/*      <div className="form-group row mb-3">*/}
-          {/*        <label className="col-sm-2 col-form-label">*/}
-          {/*          License & Certifications*/}
-          {/*        </label>*/}
-          {/*        <div className="col-sm-6">*/}
-          {/*          <textarea className="form-control" id="license"*/}
-          {/*                    placeholder="license & certifications"*/}
-          {/*                    value={cachedItem.license}*/}
-          {/*                    onChange={(e) => setCashedItem(*/}
-          {/*                        {...cachedItem, license: e.target.value})}/>*/}
-          {/*        </div>*/}
-          {/*      </div>*/}
-
-
-
-          {/*      <div className="form-group row mb-3">*/}
-          {/*        <label className="col-sm-2 col-form-label">*/}
-          {/*          Experience*/}
-          {/*        </label>*/}
-          {/*        <div className="col-sm-6">*/}
-          {/*          <textarea className="form-control" id="experience"*/}
-          {/*                 placeholder="Work experience"*/}
-          {/*                 value={cachedItem.experience}*/}
-          {/*                 onChange={(e) => setCashedItem(*/}
-          {/*                     {...cachedItem, experience: e.target.value})}/>*/}
-          {/*        </div>*/}
-          {/*      </div>*/}
-          {/*    </>*/}
-
-          {/*)}*/}
-
-          {/*{cachedItem.role === "recruiter" && (*/}
-
-          {/*    <div className="form-group row mb-3">*/}
-          {/*      <label className="col-sm-2 col-form-label">*/}
-          {/*        Company*/}
-          {/*      </label>*/}
-          {/*      <div className="col-sm-6">*/}
-          {/*        <input className="form-control" id="company"*/}
-          {/*               placeholder="Google"*/}
-          {/*               value={cachedItem.company}*/}
-          {/*               onChange={(e) => setCashedItem(*/}
-          {/*                   {...cachedItem, company: e.target.value})}/>*/}
-          {/*      </div>*/}
-          {/*    </div>*/}
-
-          {/*)}*/}
-
 
           <div className="form-group row mb-3">
+            <button>Submit</button>
             <label className="col-sm-2 col-form-label">
             </label>
             <div className="col-sm-4">
               <button className="btn btn-primary btn-block"
-                    id="registerBtn" onClick = {() => handleSignUp()}>
-                Sign up
+                     onClick = {() => handleSignUp()}>
+                Submit
               </button>
             </div>
           </div>
+          {registerStatus === "fail" && !editing  && <div className="alert alert-danger">
+            Username has already existed
+          </div>}
+
+          {registerStatus === "success" && !editing && <div className="alert alert-success">
+            Register successfully! Please login
+          </div>}
 
           <div className="form-group row mb-3">
             <label className="col-sm-1 col-form-label">

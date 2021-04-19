@@ -12,6 +12,7 @@ import UserTable from "./components/user-candidates/user-table";
 import Login from "./components/login";
 import Redirect from "react-router-dom/es/Redirect";
 import React from "react";
+import Register from "./components/register";
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
                 <ProfileScreen/>
             </Route>
             <Route path="/register" exact={true}>
-                <RegisterScreen/>
+                <Register/>
             </Route>
 
           <Route path="/userlist" exact={true}>
