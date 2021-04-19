@@ -2,7 +2,7 @@
 const API_URL = "http://localhost:4000/api/users";
 
 const findAllUsers = () => {
-    return fetch(`https://localhost:4000/api/users`)
+    return fetch(`${API_URL}`)
         .then(response => response.json())
 }
 

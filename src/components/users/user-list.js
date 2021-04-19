@@ -29,22 +29,22 @@ const UserList = ({users, findAllUsers}) => {
 
                     </tr>
 
-                    {/*{*/}
-                    {/*    users.map((user, index) =>*/}
-                    {/*                  <tr>*/}
+                    {
+                        users.map((user, index) =>
+                                      <tr>
 
-                    {/*                      <td>*/}
-                    {/*                          <Link to={{*/}
-                    {/*                              pathname: `/userDetail/${user.id}`,*/}
-                    {/*                              state: {user}*/}
-                    {/*                          }}>{user.username}</Link>*/}
-                    {/*                      </td>*/}
-                    {/*                      <td> {user.role}*/}
-                    {/*                      </td>*/}
+                                          <td>
+                                              <Link to={{
+                                                  pathname: `/userDetail/${user.id}`,
+                                                  state: {user}
+                                              }}>{user.username}</Link>
+                                          </td>
+                                          <td> {user.role}
+                                          </td>
 
-                    {/*                  </tr>*/}
-                    {/*    )*/}
-                    {/*}*/}
+                                      </tr>
+                        )
+                    }
 
                     </tbody>
                 </table>
