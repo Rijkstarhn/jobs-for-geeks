@@ -9,10 +9,12 @@ import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import {loginReducer} from "./redux/reducers/login-reducer";
 import {userReducer} from "./redux/reducers/user-reducer";
+import {usersReducer} from "./redux/reducers/allusers-reducer";
 
 const reducer = combineReducers({
   loginReducer:loginReducer,
-  userReducer:userReducer
+  userReducer:userReducer,
+  usersReducer:usersReducer
 })
 const store = createStore(reducer)
 
