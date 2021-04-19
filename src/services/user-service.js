@@ -32,7 +32,7 @@ const register = (regInfo) => {
         headers:{
             'content-type': 'application/json'
         }
-    })
+    }).then(response => response.json()).catch(error => console.log("sign up error"))
 }
 
 const updateUser = (uid, user) => {

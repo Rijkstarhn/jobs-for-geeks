@@ -54,6 +54,9 @@ const SearchScreen = ({user={},
           {status === LOGIN_STATE.LOGGED_OUT && <Link className="btn btn-outline-primary float-right" to="/login">
             Login
           </Link>}
+          {status === LOGIN_STATE.LOGGED_OUT && <Link className="btn btn-outline-primary float-right" to="/register">
+            Sign up
+          </Link>}
 
           {status === LOGIN_STATE.LOGGED_IN&& <a className="btn btn-outline-primary float-right" to="/login" onClick={() => logout()}>
             Logout
