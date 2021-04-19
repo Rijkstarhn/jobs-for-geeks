@@ -35,7 +35,18 @@ const register = (regInfo) => {
     })
 }
 
+const updateUser = (uid, user) => {
+
+    return fetch(`${API_URL}/${uid}`, {
+        method: 'PUT',
+        body: JSON.stringify(user),
+        headers:{
+            'content-type': 'application/json'
+        }
+    })
+}
+
 
 export default {
-    findAllUsers, findUserByName,login, register,
+    findAllUsers, findUserByName,login, register,updateUser
 }

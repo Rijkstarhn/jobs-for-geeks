@@ -1,24 +1,11 @@
-import React, {useState} from 'react'
-import {Link, useHistory} from "react-router-dom";
+import React, {useEffect, useState} from 'react'
+import {Link, useHistory, useParams} from "react-router-dom";
 import loginActions from "../redux/actions/login-action";
 import {connect} from "react-redux";
+import userActions from "../redux/actions/user-action";
 
-// const user = {
-//   username: "Alice",
-//   password: "123",
-//   firstname: "ddd",
-//   lastname: "",
-//   role: "recruiter",
-//   email: "dddd@gmail.com",
-//   phone: "1234557",
-//   company: "",
-//   skills: "",
-//   education: "",
-//   experience: "",
-//   license: "",
-// }
-
-const ProfileScreen = ({logout, user}) => {
+const ProfileScreen = ({logout, user, updateUser}) => {
+  const {userId} = useParams()
 
   const [cachedItem, setCashedItem] = useState(user)
   const [password, setPassword] = useState(user.password)
@@ -27,7 +14,12 @@ const ProfileScreen = ({logout, user}) => {
 
   const handleUpdate = () => {
     setUpdate(true)
+    updateUser(userId, cachedItem)
   }
+
+  // useEffect(() => {
+  //   setUpdate(false)
+  // }, [user])
   return (
       <div className="container">
         <h1 className="mb-3">
@@ -158,7 +150,7 @@ const ProfileScreen = ({logout, user}) => {
             </div>
           </div>
 
-          {cachedItem.role === "job-seeker" && (
+          {cachedItem.role === "JOB SEEKER" && (
               <>
                 <div className="form-group row mb-3">
                   <label className="col-sm-2 col-form-label">
@@ -216,7 +208,7 @@ const ProfileScreen = ({logout, user}) => {
 
           )}
 
-          {cachedItem.role === "recruiter" && (
+          {cachedItem.role === "RECRUITER" && (
 
               <div className="form-group row mb-3">
                 <label className="col-sm-2 col-form-label">
@@ -261,7 +253,8 @@ const stateToPropsMapper = (state) => {
   }
 }
 const dispatchPropsMapper = (dispatch) => ({
-  logout: () => loginActions.logout(dispatch)
+  logout: () => loginActions.logout(dispatch),
+  updateUser: (uid, user) => userActions.update(dispatch, uid, user)
 
 })
 
