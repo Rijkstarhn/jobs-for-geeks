@@ -1,41 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Link, useHistory} from "react-router-dom";
+import loginActions from "../../redux/actions/login-action";
+import {connect} from "react-redux";
+import userActions from "../../redux/actions/user-action";
 
-const users = [
-    {
-        id: "123",
-        username: "Alice",
-        password: "123",
-        firstname: "ddd",
-        lastname: "",
-        role: "recruiter",
-        email: "dddd@gmail.com",
-        phone: "1234557",
-        company: "",
-        skills: "",
-        education: "",
-        experience: "",
-        license: "",
-    },
-    {
-        id: "223",
-        username: "User2",
-        password: "123",
-        firstname: "ddd",
-        lastname: "",
-        role: "job-seeker",
-        email: "dddd@gmail.com",
-        phone: "1234557",
-        company: "",
-        skills: "",
-        education: "",
-        experience: "",
-        license: "",
-    }
+const UserList = ({users, findAllUsers}) => {
 
-]
-const UserList = () => {
+    useEffect(() => {
+        findAllUsers()
+    }, [])
     const history = useHistory()
+    console.log("users", users)
     return (
         <>
             <h1>
@@ -54,22 +29,22 @@ const UserList = () => {
 
                     </tr>
 
-                    {
-                        users.map((user, index) =>
-                                      <tr>
+                    {/*{*/}
+                    {/*    users.map((user, index) =>*/}
+                    {/*                  <tr>*/}
 
-                                          <td>
-                                              <Link to={{
-                                                  pathname: `/userDetail/${user.id}`,
-                                                  state: {user}
-                                              }}>{user.username}</Link>
-                                          </td>
-                                          <td> {user.role}
-                                          </td>
+                    {/*                      <td>*/}
+                    {/*                          <Link to={{*/}
+                    {/*                              pathname: `/userDetail/${user.id}`,*/}
+                    {/*                              state: {user}*/}
+                    {/*                          }}>{user.username}</Link>*/}
+                    {/*                      </td>*/}
+                    {/*                      <td> {user.role}*/}
+                    {/*                      </td>*/}
 
-                                      </tr>
-                        )
-                    }
+                    {/*                  </tr>*/}
+                    {/*    )*/}
+                    {/*}*/}
 
                     </tbody>
                 </table>
@@ -77,4 +52,14 @@ const UserList = () => {
         </>
     )
 }
-export default UserList
+const stateToPropsMapper = (state) => {
+    return {
+        users: state.usersReducer
+    }
+}
+
+const dispatchPropsMapper = (dispatch) => ({
+    findAllUsers: () => userActions.findAllUsers(dispatch)
+})
+
+export default connect(stateToPropsMapper, dispatchPropsMapper)(UserList)

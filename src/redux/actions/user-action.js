@@ -13,9 +13,19 @@ export const update = (dispatch, uid, user) => {
       }
   )
 }
+export const findAllUsers = (dispatch) => {
+  userService.findAllUsers().then(users => {
 
+    dispatch({
+      type:"STORE_ALL_USERS",
+      payload: {
+        users
+      }
+    })
+  })
+}
 const userActions = {
-  update
+  update, findAllUsers
 
 }
 export default userActions
