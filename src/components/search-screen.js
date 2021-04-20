@@ -27,10 +27,13 @@ const SearchScreen = ({user={},
       location = "+"
     }
     history.push(`/search/${description}/${location}`)
-    jobService.findJobs(description, location, isFullTime)
-    .then((results) => {
-      setResults(results)
-    })
+    // jobService.findJobs(description, location, isFullTime)
+    // .then((results) => {
+    //   setResults(results)
+    // })
+    // jobService.findAllJobs().then(results => {
+    //   setResults(results)
+    // })
   }
   const handleSubmit = () => {
     findJobs(searchDescription, searchLocation, isFullTime);

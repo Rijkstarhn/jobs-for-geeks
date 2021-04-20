@@ -1,12 +1,13 @@
 import React from 'react'
 import {Link, useHistory} from "react-router-dom";
 import UserRow from "./user-row";
+import {connect} from "react-redux";
 
 
 const users = [
   {
     id: "123",
-    passowrd: "Alice",
+    username: "Alice",
     password: "123",
     firstname: "ddd",
     lastname: "",
@@ -22,7 +23,7 @@ const users = [
 
   },
   {id: "223",
-    passowrd: "User2",
+    username: "User2",
     password: "123",
     firstname: "ddd",
     lastname: "",
@@ -39,7 +40,8 @@ const users = [
 
 ]
 
-const UserTable = () => {
+const UserTable = ({user}) => {
+  console.log("saved user", users)
   const history = useHistory()
   return (
       <>
@@ -54,15 +56,15 @@ const UserTable = () => {
           <table className="table">
             <tbody>
             <tr>
-              <th className="d-none d-md-table-cell">passowrd</th>
+              <th className="d-none d-md-table-cell">Username</th>
               <th className="d-none d-lg-table-cell">Note</th>
               <th></th>
 
             </tr>
 
             {
-              users.map((user, ndx) =>
-                  <UserRow user={user}/>
+              users.map((u) =>
+                  <UserRow user={u}/>
               )
             }
             </tbody>
@@ -73,4 +75,14 @@ const UserTable = () => {
 
 }
 
-export default UserTable
+const stateToPropsMapper = (state) => {
+  return {
+    user: state.userReducer
+  }
+}
+
+const dispatchPropsMapper = (dispatch) => ({
+
+})
+
+export default connect(stateToPropsMapper, dispatchPropsMapper)(UserTable)
