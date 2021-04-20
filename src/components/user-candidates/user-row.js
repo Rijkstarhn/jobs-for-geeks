@@ -1,26 +1,31 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
+import userActions from "../../redux/actions/user-action";
+import {connect} from "react-redux";
 
 const UserRow = (
-    {
-      user
+    { user,
+      deleteUser,
+      updateUser
     }) => {
 
   const [editing, setEditing] = useState(false)
   const [newNote, setNewNote] = useState(user.notes)
-  const deleteUser = (course) => {
-    console.log("delete")
+
+  const handleUpdate = () => {
+    let newUser = {
+      ...user,
+      note: newNote
+    }
+    updateUser(newUser)
   }
 
-  const updateUser = () => {
-    setEditing(false)
-    console.log("update")
-  }
+  console.log("saveed user", user.username)
   return (
       <tr>
         <td>
 
-          <Link to={{pathname:`/userDetail/${user.id}`,
+          <Link to={{pathname:`/userDetail/${user._id}`,
             state: { user}}}>{user.username}</Link>
 
 
@@ -51,17 +56,24 @@ const UserRow = (
                          }
                          }></i>}
           {editing && <i className="fas fa-check float-right fa-2x"
-                         onClick={updateUser}></i>}
+                         onClick={() => handleUpdate()}></i>}
           {!editing && <i className="fas fa-edit float-right fa-2x"
                           onClick={() => {
-                            //
-                            // console.log('HERE',title)
-                            // console.log('HERE',newTitle)
-                            // setNewTitle(title)
                             setEditing(true)
                           }}></i>}
         </td>
       </tr>)
 }
 
-export default UserRow
+const stateToPropsMapper = (state) => {
+  return {
+    // user: state.userReducer
+  }
+}
+
+const dispatchPropsMapper = (dispatch) => ({
+  deleteUser:(user) => userActions.deleteCandidate(dispatch, user),
+  updateUser:(user) => userActions.updateCandidate(dispatch, user)
+})
+
+export default connect(stateToPropsMapper, dispatchPropsMapper)(UserRow)

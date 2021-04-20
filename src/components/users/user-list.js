@@ -4,11 +4,12 @@ import loginActions from "../../redux/actions/login-action";
 import {connect} from "react-redux";
 import userActions from "../../redux/actions/user-action";
 
-const UserList = ({users, findAllUsers}) => {
+const UserList = ({users=[], findAllUsers}) => {
 
     useEffect(() => {
         findAllUsers()
     }, [])
+
     const history = useHistory()
     console.log("users", users)
     return (
