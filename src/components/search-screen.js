@@ -4,6 +4,8 @@ import jobService from "../services/job-search-service"
 import loginActions, {logout} from "../redux/actions/login-action";
 import {connect} from "react-redux";
 import {LOGIN_STATE} from "../redux/storeConstants";
+import banner from "../res/banner_teams.jpg";
+import icon from "../res/icon.png";
 
 const SearchScreen = ({user={},
   status, logout}) => {
@@ -46,10 +48,12 @@ const SearchScreen = ({user={},
   console.log("status", status)
   return (
       <div>
-        <br/>
+          <img src={banner} className="img-fluid" alt="home_banner"/>
+          <br/>
         <h2>
             <Link to="/">
-                <i className="fas fa-home"/>
+                {/*<i className="fas fa-home"/>*/}
+                <img src={icon} className="img-thumbnail" alt="home_icon"/>
             </Link>
           {status === LOGIN_STATE.LOGGED_OUT && <Link className="btn btn-outline-primary float-right" to="/login">
             Login
