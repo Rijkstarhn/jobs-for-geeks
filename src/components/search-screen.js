@@ -17,7 +17,10 @@ const SearchScreen = ({user={},
     setSearchDescription(description)
     setSearchLocation(location)
     setIsFullTime(false)
-    findJobs(description, location)
+    //findJobs(description, location)
+    jobService.findAllJobs().then(results => {
+      setResults(results)
+    })
   }, [])
   const findJobs = (description, location, isFullTime) => {
     if (description === undefined || description === "") {
@@ -27,13 +30,11 @@ const SearchScreen = ({user={},
       location = "+"
     }
     history.push(`/search/${description}/${location}`)
-    // jobService.findJobs(description, location, isFullTime)
-    // .then((results) => {
-    //   setResults(results)
-    // })
-    // jobService.findAllJobs().then(results => {
-    //   setResults(results)
-    // })
+    jobService.findJobs(description, location, isFullTime)
+    .then((results) => {
+      setResults(results)
+    })
+
   }
   const handleSubmit = () => {
     findJobs(searchDescription, searchLocation, isFullTime);
