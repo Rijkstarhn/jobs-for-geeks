@@ -8,7 +8,7 @@ const findJobs = (description, location, isFullTime) => {
 }
 
 const findAllJobs = () => {
-    return fetch(`http://localhost:4000/findRes`)
+    return fetch(`http://localhost:4000/search/default`)
     .then(response => response.json())
 }
 
