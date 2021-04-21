@@ -1,0 +1,55 @@
+
+
+.search-heading {
+    text-align: left;
+    font-size: 25px;
+    font-style: initial;
+}
+
+.signUpButton {
+    padding: 8px 20px;
+    margin: 12px;
+}
+
+.loginButton {
+    padding: 8px 20px;
+    margin: 12px;
+}
+
+.myProfileButton {
+    padding: 8px 13px;
+    margin: 12px;
+}
+
+.logoutButton {
+    padding: 8px 12px;
+    margin: 12px;
+}
+
+.checkboxPosition {
+    padding: 4px 1px;
+}
+
+.searchBar {
+}
+
+.searchButton {
+    padding: 8px 3rem;
+}
+
+.searchButton:hover {
+    transform: scale(1.1);
+    transition: 0.1s ease;
+}
+
+
+.viewAllUsers {
+    padding: 5px 39px;
+    margin: 10px;
+}
+
+.searchMenu {
+    padding: 5px 12px;
+    margin: 10px;
+}
+
