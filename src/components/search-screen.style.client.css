@@ -1,0 +1,28 @@
+.signUpButton {
+    padding: 5px 12px;
+    margin: 10px;
+}
+
+.loginButton {
+    padding: 5px 15px;
+    margin: 10px;
+}
+
+.logoutButton {
+    padding: 5px 12px;
+    margin: 10px;
+}
+
+.checkboxPosition{
+    padding: 4px 1px;
+}
+
+.searchButton {
+    padding: 8px 3rem;
+}
+
+.search-heading {
+    text-align: left;
+    font-size: 25px;
+    font-style: initial;
+}
