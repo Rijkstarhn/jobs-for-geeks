@@ -14,13 +14,13 @@ const SearchScreen = ({
                       }) => {
     const history = useHistory()
     const {description, location} = useParams()
-    const [searchDescription, setSearchDescription] = useState(description)
-    const [searchLocation, setSearchLocation] = useState(location)
+    const [searchDescription, setSearchDescription] = useState(description === "undefined" ? "" : description)
+    const [searchLocation, setSearchLocation] = useState(location === "undefined"? "" : location)
     const [isFullTime, setIsFullTime] = useState(false)
     const [results, setResults] = useState(undefined)
     useEffect(() => {
         //findJobs(description, location)
-        jobService.findAllJobs().then(results => {
+        jobService.findJobs(description, location, isFullTime).then(results => {
             setResults(results)
         })
     }, [])
@@ -31,12 +31,12 @@ const SearchScreen = ({
         // if (location === undefined || location === "") {
         //     location = "+"
         // }
-        // history.push(`/search/${description}/${location}`)
+        history.push(`/search/${description? description : "undefined"}/${location ? location : "undefined"}`)
         jobService.findJobs(description, location, isFullTime)
             .then((results) => {
                 setResults(results)
             })
-      clearForm()
+      //clearForm()
 
     }
     const handleSubmit = () => {
