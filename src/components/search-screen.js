@@ -19,26 +19,24 @@ const SearchScreen = ({
     const [isFullTime, setIsFullTime] = useState(false)
     const [results, setResults] = useState(undefined)
     useEffect(() => {
-        setSearchDescription(description)
-        setSearchLocation(location)
-        setIsFullTime(false)
         //findJobs(description, location)
         jobService.findAllJobs().then(results => {
             setResults(results)
         })
     }, [])
     const findJobs = (description, location, isFullTime) => {
-        if (description === undefined || description === "") {
-            description = "+"
-        }
-        if (location === undefined || location === "") {
-            location = "+"
-        }
-        history.push(`/search/${description}/${location}`)
+        // if (description === undefined || description === "") {
+        //     description = "+"
+        // }
+        // if (location === undefined || location === "") {
+        //     location = "+"
+        // }
+        // history.push(`/search/${description}/${location}`)
         jobService.findJobs(description, location, isFullTime)
             .then((results) => {
                 setResults(results)
             })
+      clearForm()
 
     }
     const handleSubmit = () => {
@@ -50,9 +48,12 @@ const SearchScreen = ({
             handleSubmit();
         }
     };
+    const clearForm = () => {
+      setSearchDescription("")
+      setSearchLocation("")
+      setIsFullTime(false)
+    }
 
-    console.log("user", user)
-    console.log("status", status)
     return (
         <div className="container-fluid">
             <img src={banner} className="img-fluid" alt="home_banner"/>
@@ -118,7 +119,7 @@ const SearchScreen = ({
                     <label className='col-form-label checkboxPosition'>
                         Full Time Only
                         <input type="checkbox" className='checkboxMargin'
-                               defaultChecked={false}
+                               checked={isFullTime}
                                onClick={() => {
                                    setIsFullTime(!isFullTime)
                                }}
@@ -134,6 +135,10 @@ const SearchScreen = ({
                         {/*Search*/}
                         <i className="fas fa-search"/>
                     </button>
+                  <button  className="btn btn-outline-primary searchButton" onClick={() => {
+                    jobService.findAllJobs().then(results => {
+                      setResults(results)
+                    })}}>Show All Jobs</button>
                 </div>
             </div>
             <br/>
