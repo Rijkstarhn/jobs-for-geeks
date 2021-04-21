@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {useHistory, useParams} from 'react-router-dom'
 import jobService from '../services/job-search-service'
+import loginActions from "../redux/actions/login-action";
+import {connect} from "react-redux";
+import userActions from "../redux/actions/user-action";
+import {LOGIN_STATE} from "../redux/storeConstants";
 
 const isValidHttpUrl = (string) => {
     let url;
@@ -14,7 +18,7 @@ const isValidHttpUrl = (string) => {
     return url.protocol === "http:" || url.protocol === "https:";
 }
 
-const DetailsScreen = () => {
+const DetailsScreen = ({user, create, status}) => {
     const {jobId} = useParams()
     const history = useHistory()
     const [job, setMovie] = useState({})
@@ -61,8 +65,23 @@ const DetailsScreen = () => {
                 history.goBack()
             }}>Back
             </button>
+
+          {user.role === "JOB SEEKER" && status === LOGIN_STATE.LOGGED_IN &&
+          <button className="btn btn-primary float-end" onClick={() => create(job)} >Add to my job list</button>}
         </div>
     )
 }
+const stateToPropsMapper = (state) => {
+  return {
+    user: state.userReducer,
+    status: state.loginReducer,
+  }
+}
 
-export default DetailsScreen
+const dispatchPropsMapper = (dispatch) => ({
+  create: (job) => userActions.createJob(dispatch, job)
+
+
+})
+
+export default connect(stateToPropsMapper, dispatchPropsMapper)(DetailsScreen)

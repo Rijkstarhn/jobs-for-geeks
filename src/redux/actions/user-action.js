@@ -34,7 +34,43 @@ export const deleteCandidate = (dispatch, user) => {
   })
 }
 
-export const updateCandidate = (dispatch, user) => {
+export const createCandidate = (dispatch, user) => {
+  dispatch({
+    type: "CREATE_USER",
+    payload:{
+      user
+    }
+  })
+}
+
+export const updateCandidate = (dispatch, job) => {
+  dispatch({
+    type: "UPDATE_JOB",
+    payload:{
+      jobToUpdate:job
+    }
+  })
+}
+
+export const deleteJob = (dispatch, job) => {
+  dispatch({
+    type: "DELETE_JOB",
+    payload:{
+      jobToDelete:job
+    }
+  })
+}
+
+export const createJob = (dispatch, job) => {
+  dispatch({
+    type: "CREATE_JOB",
+    payload:{
+      job
+    }
+  })
+}
+
+export const updateJob = (dispatch, user) => {
   dispatch({
     type: "UPDATE_USER",
     payload:{
@@ -45,7 +81,7 @@ export const updateCandidate = (dispatch, user) => {
 
 
 const userActions = {
-  update, findAllUsers, deleteCandidate, updateCandidate
+  update, findAllUsers, deleteCandidate, updateCandidate, createCandidate, createJob, deleteJob, updateJob
 
 }
 export default userActions

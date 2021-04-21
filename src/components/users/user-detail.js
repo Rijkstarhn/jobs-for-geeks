@@ -1,12 +1,17 @@
 import React, {useState} from 'react'
 import {Link, useHistory, useLocation} from "react-router-dom";
+import userActions from "../../redux/actions/user-action";
+import {connect} from "react-redux";
+import {LOGIN_STATE} from "../../redux/storeConstants";
 
-const UserDetail = () => {
+const UserDetail = ({currentUser, create, status}) => {
   const location = useLocation();
-  const user = location.state.user;
+
   const [type, setType] = useState("interested")
     const history = useHistory()
+  const user = location.state.user
 
+  console.log("user", user)
   return (
       <div className="container">
         <h1 className="mb-3">
@@ -86,21 +91,17 @@ const UserDetail = () => {
 
         <div className="form-group row mb-3">
           <label className="col-sm-2 col-form-label" htmlFor="role-select">
-            Choose a role:
+            Role:
           </label>
           <div className="col-sm-6">
-            <select className="form-control form-select-lg mb-3"
-                    aria-label=".form-select-lg example"
-                    value={user.role}
-                    disabled={true}>
-
-              <option value="job-seeker">Job Seeker</option>
-              <option value="recruiter">Recruiter</option>
-            </select>
+            <input className="form-control" id="education"
+                   value={user.role}
+                   disabled={true}
+            />
           </div>
         </div>
 
-        {user.role === "job-seeker" && (
+        {currentUser.role === "JOB SEEKER" && (
             <>
               <div className="form-group row mb-3">
                 <label className="col-sm-2 col-form-label">
@@ -155,7 +156,7 @@ const UserDetail = () => {
 
         )}
 
-        {user.role === "recruiter" && (
+        {currentUser.role === "RECRUITER" && (
 
             <div className="form-group row mb-3">
               <label className="col-sm-2 col-form-label">
@@ -169,7 +170,7 @@ const UserDetail = () => {
             </div>
 
         )}
-
+        {currentUser.role === "RECRUITER" && status === LOGIN_STATE.LOGGED_IN && (
         <div className="row float-right">
 
           <select className="form-select" aria-label="Default select example"
@@ -178,13 +179,24 @@ const UserDetail = () => {
             <option value="interested">Interested</option>
             <option value="contacted">Contacted</option>
           </select>
-          <button className="btn btn-primary">Add to my candidates list</button>
-
-        </div>
+          <button className="btn btn-primary" onClick={() => create(user)}>Add to my candidates list</button>
+        </div>)}
 
 
       </div>
   )
 }
 
-export default UserDetail;
+const stateToPropsMapper = (state) => {
+  return {
+    currentUser:state.userReducer,
+    status: state.loginReducer,
+  }
+}
+
+const dispatchPropsMapper = (dispatch) => ({
+  create: (user) => userActions.createCandidate(dispatch, user)
+
+})
+
+export default connect(stateToPropsMapper, dispatchPropsMapper)(UserDetail)
