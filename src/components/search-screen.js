@@ -54,14 +54,14 @@ const SearchScreen = ({
     console.log("user", user)
     console.log("status", status)
     return (
-        <div>
+        <div className="container-fluid">
             <img src={banner} className="img-fluid" alt="home_banner"/>
             <br/>
             <div className="row search-heading">
                 <div className="col-sm-6">
                     <Link to="/">
                         {/*<i className="fas fa-home"/>*/}
-                        <img src={icon} className="btn" alt="home_icon"/>
+                        <img src={icon} className="btn home-icon" alt="home_icon"/>
                     </Link>
                     <a> Search Screen
                     </a>
