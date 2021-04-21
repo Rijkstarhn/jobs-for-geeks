@@ -1,10 +1,21 @@
+.search-heading {
+    text-align: left;
+    font-size: 25px;
+    font-style: initial;
+}
+
 .signUpButton {
-    padding: 5px 12px;
+    padding: 5px 20px;
     margin: 10px;
 }
 
 .loginButton {
-    padding: 5px 15px;
+    padding: 5px 20px;
+    margin: 10px;
+}
+
+.myProfileButton {
+    padding: 5px 13px;
     margin: 10px;
 }
 
@@ -13,16 +24,25 @@
     margin: 10px;
 }
 
-.checkboxPosition{
+.checkboxPosition {
     padding: 4px 1px;
+}
+
+.searchBar {
+
 }
 
 .searchButton {
     padding: 8px 3rem;
 }
 
-.search-heading {
-    text-align: left;
-    font-size: 25px;
-    font-style: initial;
+.viewAllUsers {
+    padding: 5px 39px;
+    margin: 10px;
 }
+
+.searchMenu {
+    padding: 5px 12px;
+    margin: 10px;
+}
+

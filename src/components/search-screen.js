@@ -72,11 +72,17 @@ const SearchScreen = ({
                         Sign up
                     </Link>}
 
-                    {status === LOGIN_STATE.LOGGED_IN && <a
+                    {status === LOGIN_STATE.LOGGED_IN && <Link
                         className="btn btn-outline-primary float-right logoutButton" to="/login"
                         onClick={() => logout()}>
                         Logout
-                    </a>}
+                    </Link>}
+
+                    {status === LOGIN_STATE.LOGGED_IN && <Link
+                        className="btn btn-outline-primary float-right myProfileButton"
+                        to={`/profile/${user._id}`}>
+                        My profile
+                    </Link>}
                 </div>
             </div>
 
@@ -114,7 +120,7 @@ const SearchScreen = ({
                            onKeyPress={
                                handleKeypress
                            }
-                           className="form-control"/>
+                           className="form-control searchBar"/>
                 </div>
                 <div className="col-sm-4">
                     <h6>Location</h6>
@@ -126,10 +132,11 @@ const SearchScreen = ({
                            onKeyPress={
                                handleKeypress
                            }
-                           className="form-control"/>
+                           className="form-control searchBar"/>
                 </div>
                 <div className="col-sm-2">
-                    <label className='col-form-label checkboxPosition'>Full Time Only
+                    <label className='col-form-label checkboxPosition'>
+                        Full Time Only
                         <input type="checkbox" className='checkboxMargin'
                                defaultChecked={false}
                                onClick={() => {
@@ -149,60 +156,94 @@ const SearchScreen = ({
                     </button>
                 </div>
             </div>
-            <br/>
-            <div className="row">
 
-                <div className="col-sm-3">
-                    <Link className="allUsers" to={`/userlist`}>
-                        View All Users
-                    </Link>
+            <br/>
+
+            <div className="row">
+                <div className="col-sm-10">
+                    {
+                        results !== undefined &&
+                        <>
+                            <ul className="list-group">
+                                {
+                                    results.map((result) => {
+                                        return (
+                                            <li className="list-group-item">
+                                                <Link to={`/details/${result.id}`}>
+                                                    {result.title}
+                                                </Link>
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        </>
+                    }
+                </div>
+                <div className="col-sm-2">
+                    <div className="row">
+                        <Link className="btn btn-outline-primary float-right viewAllUsers"
+                              to={`/userlist`}>
+                            View All Users
+                        </Link>
+                    </div>
+                    <div className="row">
+                        {status === LOGIN_STATE.LOGGED_IN && user.role === "JOB SEEKER" &&
+                         <Link className="btn btn-outline-primary float-right searchMenu"
+                               to={`/${user._id}/myjob`}>
+                             My Jobs
+                         </Link>}
+
+                        {status === LOGIN_STATE.LOGGED_IN && user.role === "RECRUITER" &&
+                         <Link className="btn btn-outline-primary float-right searchMenu"
+                               to={`/${user._id}/candidates`}>
+                             My Saved Candidates
+                         </Link>}
+                    </div>
                 </div>
 
-                {status === LOGIN_STATE.LOGGED_IN && <div className="col-sm-3">
+                {/*{status === LOGIN_STATE.LOGGED_IN && <div className="col-sm-3">*/}
 
-                    <Link className="searchMenu" to={`/profile/${user._id}`}>
-                        My profile
-                    </Link>
-                </div>}
+                {/*    <Link className="searchMenu" to={`/profile/${user._id}`}>*/}
+                {/*        My profile*/}
+                {/*    </Link>*/}
+                {/*</div>}*/}
 
 
-                {status === LOGIN_STATE.LOGGED_IN && user.role === "JOB SEEKER" &&
-                 <div className="col-sm-3">
-                     <Link className="searchMenu" to={`/${user._id}/myjob`}>
-                         My Jobs
-                     </Link>
-                 </div>}
+                {/*{status === LOGIN_STATE.LOGGED_IN && user.role === "JOB SEEKER" &&*/}
+                {/* <div className="col-sm-3">*/}
+                {/*     <Link className="searchMenu" to={`/${user._id}/myjob`}>*/}
+                {/*         My Jobs*/}
+                {/*     </Link>*/}
+                {/* </div>}*/}
 
-                {status === LOGIN_STATE.LOGGED_IN && user.role === "RECRUITER" && <div
-                    className="col-sm-3">
-                    <Link className="searchMenu" to={`/${user._id}/candidates`}>
-                        My Saved Candidates
-                    </Link>
-                </div>}
+                {/*{status === LOGIN_STATE.LOGGED_IN && user.role === "RECRUITER" && <div*/}
+                {/*    className="col-sm-3">*/}
+                {/*    <Link className="searchMenu" to={`/${user._id}/candidates`}>*/}
+                {/*        My Saved Candidates*/}
+                {/*    </Link>*/}
+                {/*</div>}*/}
 
             </div>
 
-
-            <br/>
-            <br/>
-            {
-                results !== undefined &&
-                <>
-                    <ul className="list-group">
-                        {
-                            results.map((result) => {
-                                return (
-                                    <li className="list-group-item">
-                                        <Link to={`/details/${result.id}`}>
-                                            {result.title}
-                                        </Link>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </>
-            }
+            {/*{*/}
+            {/*    results !== undefined &&*/}
+            {/*    <>*/}
+            {/*        <ul className="list-group">*/}
+            {/*            {*/}
+            {/*                results.map((result) => {*/}
+            {/*                    return (*/}
+            {/*                        <li className="list-group-item">*/}
+            {/*                            <Link to={`/details/${result.id}`}>*/}
+            {/*                                {result.title}*/}
+            {/*                            </Link>*/}
+            {/*                        </li>*/}
+            {/*                    )*/}
+            {/*                })*/}
+            {/*            }*/}
+            {/*        </ul>*/}
+            {/*    </>*/}
+            {/*}*/}
         </div>
     )
 }
