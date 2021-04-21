@@ -7,11 +7,16 @@ const findJobs = (description, location, isFullTime) => {
         .then(response => response.json())
 }
 
+const findAllJobs = () => {
+    return fetch(`http://localhost:4000/findRes`)
+    .then(response => response.json())
+}
+
 const findJobByID = (jobId) => {
     return fetch(`https://jobs.github.com/positions/${jobId}.json`)
         .then(response => response.json())
 }
 
 export default {
-    findJobs, findJobByID
+    findJobs, findJobByID, findAllJobs
 }

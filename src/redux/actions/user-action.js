@@ -15,7 +15,7 @@ export const update = (dispatch, uid, user) => {
 }
 export const findAllUsers = (dispatch) => {
   userService.findAllUsers().then(users => {
-
+console.log("find all users is called")
     dispatch({
       type:"STORE_ALL_USERS",
       payload: {
@@ -24,8 +24,28 @@ export const findAllUsers = (dispatch) => {
     })
   })
 }
+
+export const deleteCandidate = (dispatch, user) => {
+  dispatch({
+    type: "DELETE_USER",
+    payload:{
+      userToDelete:user
+    }
+  })
+}
+
+export const updateCandidate = (dispatch, user) => {
+  dispatch({
+    type: "UPDATE_USER",
+    payload:{
+      userToUpdate:user
+    }
+  })
+}
+
+
 const userActions = {
-  update, findAllUsers
+  update, findAllUsers, deleteCandidate, updateCandidate
 
 }
 export default userActions
