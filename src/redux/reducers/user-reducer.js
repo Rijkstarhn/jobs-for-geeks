@@ -9,6 +9,12 @@ export const userReducer = (state = INITIAL_STATE, action) => {
 
     case "UPDATE":
       return action.payload.user
+    case "CREATE_USER":{
+      return {
+        ...state,
+        users:[...state.users, action.payload.user]
+      }
+    }
 
     case "DELETE_USER":
       return {

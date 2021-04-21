@@ -34,6 +34,15 @@ export const deleteCandidate = (dispatch, user) => {
   })
 }
 
+export const createCandidate = (dispatch, user) => {
+  dispatch({
+    type: "CREATE_USER",
+    payload:{
+      user
+    }
+  })
+}
+
 export const updateCandidate = (dispatch, user) => {
   dispatch({
     type: "UPDATE_USER",
@@ -45,7 +54,7 @@ export const updateCandidate = (dispatch, user) => {
 
 
 const userActions = {
-  update, findAllUsers, deleteCandidate, updateCandidate
+  update, findAllUsers, deleteCandidate, updateCandidate, createCandidate
 
 }
 export default userActions

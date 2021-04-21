@@ -36,7 +36,7 @@ const UserList = ({users=[], findAllUsers}) => {
 
                                           <td>
                                               <Link to={{
-                                                  pathname: `/userDetail/${user.id}`,
+                                                  pathname: `/userDetail/${user._id}`,
                                                   state: {user}
                                               }}>{user.username}</Link>
                                           </td>
@@ -55,7 +55,7 @@ const UserList = ({users=[], findAllUsers}) => {
 }
 const stateToPropsMapper = (state) => {
     return {
-        users: state.usersReducer
+        users: state.usersReducer,
     }
 }
 

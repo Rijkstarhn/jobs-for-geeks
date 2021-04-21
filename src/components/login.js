@@ -21,8 +21,6 @@ const Login = ({login, status, user}) => {
         setPassword("");
     };
 
-    console.log("user", user)
-    console.log("status", status)
     return (
         <div className="container">
             <img src={banner} className="img-fluid" alt="signup_banner"/>
