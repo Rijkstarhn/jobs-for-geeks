@@ -20,7 +20,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         users: state.users.filter(user => {
-              if (user._id !== action.userToDelete._id) {
+              if (user._id !== action.payload.userToDelete._id) {
                 return true
               } else {
                 return false
@@ -33,14 +33,48 @@ export const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         users: state.users.map(user => {
-              if (user._id !== action.userToUpdate._id) {
-                return action.userToUpdate
+              if (user._id !== action.payload.userToUpdate._id) {
+                return action.payload.userToUpdate
               } else {
                 return user
               }
             }
         )
       }
+
+    case "CREATE_JOB":{
+      return {
+        ...state,
+        jobs:[...state.jobs, action.payload.job]
+      }
+    }
+
+    case "DELETE_JOB":
+      return {
+        ...state,
+        jobs: state.jobs.filter(job => {
+              if (job._id !== action.payload.jobToDelete._id) {
+                return true
+              } else {
+                return false
+              }
+            }
+        )
+      }
+
+    case "UPDATE_USER":
+      return {
+        ...state,
+        jobs: state.jobs.map(job => {
+              if (job._id !== action.payload.jobToUpdate._id) {
+                return action.payload.jobToUpdate
+              } else {
+                return job
+              }
+            }
+        )
+      }
+
     default:
       return state;
   }
