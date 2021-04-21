@@ -2,7 +2,7 @@ const JOB_API_URL = 'http://localhost:4000'
 
 const findJobs = (description, location, isFullTime) => {
 
-    return fetch(`${JOB_API_URL}/search/${description}/${location}/${isFullTime}`)
+    return fetch(`${JOB_API_URL}/search/${description !== "undefined " ? description : "+"}/${location !== "undefined" ? location : "+"}/${isFullTime}`)
     .then(response => response.json())
     // if (isFullTime) {
     //     return fetch(`${JOB_API_URL}/description=${description}&location=${location}&full_time=true&page=1`)
