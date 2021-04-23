@@ -18,7 +18,7 @@ const findAllJobs = () => {
 }
 
 const findJobByID = (jobId) => {
-    return fetch(`https://jobs.github.com/positions/${jobId}.json`)
+    return fetch(`${JOB_API_URL}/search/id/${jobId}`)
         .then(response => response.json())
 }
 
