@@ -35,6 +35,7 @@ const SearchScreen = ({
                 setResults(results)
             })
       //clearForm()
+      console.log(results)
 
     }
     const handleSubmit = () => {
