@@ -34,13 +34,16 @@ export const deleteCandidate = (dispatch, user) => {
   })
 }
 
-export const createCandidate = (dispatch, user) => {
-  dispatch({
-    type: "CREATE_USER",
-    payload:{
-      user
-    }
-  })
+export const createCandidate = (dispatch, uid, seekerId) => {
+  userService.createSeekerForRecruiter(uid, seekerId)
+      .then(user => {
+        dispatch({
+                   type: "CREATE_USER",
+                   payload:{
+                     user
+                   }
+                 })
+      })
 }
 
 export const updateCandidate = (dispatch, job) => {

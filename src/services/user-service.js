@@ -46,7 +46,17 @@ const updateUser = (uid, user) => {
     })
 }
 
+const createSeekerForRecruiter = (uid, seekerId) => {
+    return fetch(`${API_URL}/${uid}/seekers`, {
+        method: 'POST',
+        body: JSON.stringify(seekerId),
+        headers:{
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+}
 
 export default {
-    findAllUsers, findUserByName,login, register,updateUser
+    findAllUsers, findUserByName,login, register,updateUser, createSeekerForRecruiter
 }
