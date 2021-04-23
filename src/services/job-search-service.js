@@ -19,7 +19,7 @@ const findAllJobs = () => {
 
 const findJobByID = (jobId) => {
     return fetch(`${JOB_API_URL}/search/id/${jobId}`)
-        .then(response => response.json())
+    .then(response => response.json())
 }
 
 export default {

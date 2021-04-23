@@ -4,15 +4,15 @@ export const findAllJobs = () =>
     fetch(API_URL)
         .then(response => response.json())
 
-export const createJob = (userId, job) =>
-    fetch(`${API_URL}/${userId}/job`, {
-        method: 'POST',
-        body: JSON.stringify(job),
-        headers:{
-            'content-type': 'application/json'
-        }
-    })
-        .then(response => response.json())
+// export const createJob = (userId, job) =>
+//     fetch(`${API_URL}/${userId}/job`, {
+//         method: 'POST',
+//         body: JSON.stringify(job),
+//         headers:{
+//             'content-type': 'application/json'
+//         }
+//     })
+//         .then(response => response.json())
 
 export const deleteJob = (jobId) =>
     fetch(`${API_URL}/${jobId}`, {
@@ -42,7 +42,6 @@ export const findJobById=(jobId) =>
 
 
 export default {
-    createJob,
     deleteJob,
     updateJob,
     findJobForUser,

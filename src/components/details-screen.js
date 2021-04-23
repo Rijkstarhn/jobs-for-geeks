@@ -5,71 +5,75 @@ import loginActions from "../redux/actions/login-action";
 import {connect} from "react-redux";
 import userActions from "../redux/actions/user-action";
 import {LOGIN_STATE} from "../redux/storeConstants";
+import jobActions from "../redux/actions/job-action";
 
 const isValidHttpUrl = (string) => {
-    let url;
+  let url;
 
-    try {
-        url = new URL(string);
-    } catch (_) {
-        return false;
-    }
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
 
-    return url.protocol === "http:" || url.protocol === "https:";
+  return url.protocol === "http:" || url.protocol === "https:";
 }
 
 const DetailsScreen = ({user, create, status}) => {
-    const {jobId} = useParams()
-    const history = useHistory()
-    const [job, setMovie] = useState({})
-    const [jobDescription, setJobDescription] = useState({})
-    useEffect(() => {
-        findJobByID()
-    }, [])
-    const findJobByID = () => {
-        jobService.findJobByID(jobId)
-            .then((data) => {
-                setMovie(data)
+  const {jobId} = useParams()
+  const history = useHistory()
+  const [job, setMovie] = useState({})
+  const [jobDescription, setJobDescription] = useState({})
+  useEffect(() => {
+    findJobByID()
+  }, [])
 
-            })
+  const findJobByID = () => {
+    jobService.findJobByID(jobId)
+    .then((data) => {
+      setMovie(data)
+    })
+  }
+  const handleCreateJob = () => {
+    let newJob = {
+      ...job,
+      createdTime: new Date()
     }
-    console.log("job", job)
-    return (
-        <div className='container-fluid containerMargin'>
-            <h2>
-                {job.title}
-                <img className='float-right companyIcon' src={`${job.company_logo}`}
-                     width={150} height={150}/>
-            </h2>
+    console.log("newjob", newJob)
 
-            <h6 className='inlineHeading'>{job.company}</h6>
+    create(user._id, newJob)
+  }
+  console.log("job", job)
+  return (
+      <div className='container-fluid containerMargin'>
+        <h2>
+          {job.title}
+          <img className='float-right companyIcon' src={`${job.company_logo}`}
+               width={150} height={150}/>
+        </h2>
 
-            {isValidHttpUrl(job.company_url) &&
-            <a href={`${job.company_url}`} target="_blank" rel = "noopener noreferrer">{job.company_url}</a>}
-            {/*<div className='row'>*/}
-            {/*    <div className = 'col-2'>*/}
-            {/*        */}
-            {/*    </div>*/}
-            {/*    <div className = 'col-3'>*/}
-            {/*        */}
-            {/*    </div>*/}
-            {/*</div>*/}
-            <br/>
-            <h6 className='inlineHeading'>Location:</h6>
-            {job.location}
-            <br/>
-            <br/>
-            <h6 className='inlineHeading'>Job Description</h6>
-            <div dangerouslySetInnerHTML={{__html: job.description}}/>
-            <button className='btn btn-primary' onClick={() => {
-                history.goBack()
-            }}>Back
-            </button>
+        <h6 className='inlineHeading'>{job.company}</h6>
 
-          {user.role === "JOB SEEKER" && status === LOGIN_STATE.LOGGED_IN &&
-          <button className="btn btn-primary float-end" onClick={() => create(job)} >Add to my job list</button>}
-        </div>
-    )
+        {isValidHttpUrl(job.company_url) &&
+        <a href={`${job.company_url}`} target="_blank"
+           rel="noopener noreferrer">{job.company_url}</a>}
+        <br/>
+        <h6 className='inlineHeading'>Location:</h6>
+        {job.location}
+        <br/>
+        <br/>
+        <h6 className='inlineHeading'>Job Description</h6>
+        <div dangerouslySetInnerHTML={{__html: job.description}}/>
+        <button className='btn btn-primary' onClick={() => {
+          history.goBack()
+        }}>Back
+        </button>
+
+        {user.role === "JOB SEEKER" && status === LOGIN_STATE.LOGGED_IN &&
+        <button className="btn btn-primary float-end"
+                onClick={() => handleCreateJob()}>Add to my job list</button>}
+      </div>
+  )
 }
 const stateToPropsMapper = (state) => {
   return {
@@ -79,9 +83,7 @@ const stateToPropsMapper = (state) => {
 }
 
 const dispatchPropsMapper = (dispatch) => ({
-  create: (job) => userActions.createJob(dispatch, job)
-
-
+  create: (uid, job) => jobActions.createJob(dispatch, uid, job)
 })
 
 export default connect(stateToPropsMapper, dispatchPropsMapper)(DetailsScreen)
