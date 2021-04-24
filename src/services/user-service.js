@@ -88,6 +88,16 @@ const deleteSeekerForRecruiter = (uid, seeker) => {
       .then(response => response.json()).catch(error => console.log("error"))
 }
 
+const updateSeekerForRecruiter = (uid, seeker) => {
+  return fetch(`${API_URL}/${uid}`, {
+    method: 'PUT',
+    body: JSON.stringify(seeker),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+}
+
 export default {
   findAllUsers,
   findUserByName,
@@ -99,4 +109,5 @@ export default {
   createSeekerForRecruiter,
   deleteSeekerForRecruiter,
   findAllSeekersForRecruiter,
+  updateSeekerForRecruiter,
 }

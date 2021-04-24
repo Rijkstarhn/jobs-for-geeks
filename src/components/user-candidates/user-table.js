@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import userActions from "../../redux/actions/user-action";
 
 const UserTable = ({user, seekers, findAllSavedCandidates}) => {
-  console.log("saved user", seekers)
+  console.log("saved seekers at table:", seekers)
   const history = useHistory()
   useEffect(() => {
     findAllSavedCandidates(user._id)
@@ -24,9 +24,9 @@ const UserTable = ({user, seekers, findAllSavedCandidates}) => {
             <tbody>
             <tr>
               <th className="d-none d-md-table-cell">Username</th>
-              <th className="d-none d-lg-table-cell">Note</th>
+              <th className="d-none d-lg-table-cell">Name</th>
+              <th className="d-none d-lg-table-cell">Skills</th>
               <th></th>
-
             </tr>
 
             {
