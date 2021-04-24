@@ -4,7 +4,7 @@ import userActions from "../../redux/actions/user-action";
 import {connect} from "react-redux";
 
 const UserRow = (
-    { user,
+    { user, seeker,
       deleteUser,
       updateUser
     }) => {
@@ -20,15 +20,12 @@ const UserRow = (
     updateUser(newUser)
   }
 
-  console.log("saveed user", user.username)
   return (
       <tr>
         <td>
 
-          <Link to={{pathname:`/userDetail/${user._id}`,
-            state: { user}}}>{user.username}</Link>
-
-
+          <Link to={{pathname:`/userDetail/${seeker._id}`,
+            state: { seeker}}}>{seeker.username}</Link>
         </td>
         <td className="d-none d-lg-table-cell">         {
           !editing && (
@@ -52,7 +49,7 @@ const UserRow = (
           {editing && <i className="fas fa-times float-right fa-2x"
                          onClick={() => {
                            setEditing(false)
-                           deleteUser(user)
+                           deleteUser(user._id, seeker)
                          }
                          }></i>}
           {editing && <i className="fas fa-check float-right fa-2x"
@@ -72,7 +69,7 @@ const stateToPropsMapper = (state) => {
 }
 
 const dispatchPropsMapper = (dispatch) => ({
-  deleteUser:(user) => userActions.deleteCandidate(dispatch, user),
+  deleteUser:(uid, seeker) => userActions.deleteCandidate(dispatch, uid, seeker),
   updateUser:(user) => userActions.updateCandidate(dispatch, user)
 })
 

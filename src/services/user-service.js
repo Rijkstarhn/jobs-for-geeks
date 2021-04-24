@@ -77,6 +77,17 @@ const findAllSeekersForRecruiter = (uid) => {
       .then(response => response.json())
 }
 
+const deleteSeekerForRecruiter = (uid, seeker) => {
+  return fetch(`${API_URL}/${uid}/seekers`, {
+    method: 'DELETE',
+    body: JSON.stringify(seeker),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+      .then(response => response.json()).catch(error => console.log("error"))
+}
+
 export default {
   findAllUsers,
   findUserByName,
@@ -86,5 +97,6 @@ export default {
   createJobForUser,
   findAllUsersSavedJobs,
   createSeekerForRecruiter,
-  findAllSeekersForRecruiter
+  deleteSeekerForRecruiter,
+  findAllSeekersForRecruiter,
 }

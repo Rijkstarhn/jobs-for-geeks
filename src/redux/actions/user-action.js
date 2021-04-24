@@ -23,13 +23,16 @@ export const findAllUsers = (dispatch) => {
   })
 }
 
-export const deleteCandidate = (dispatch, user) => {
-  dispatch({
-    type: "DELETE_USER",
-    payload:{
-      userToDelete:user
-    }
-  })
+export const deleteCandidate = (dispatch, uid, seeker) => {
+  // dispatch({
+  //   type: "DELETE_USER",
+  //   payload:{
+  //     userToDelete:user
+  //   }
+  // })
+    userService.deleteSeekerForRecruiter(uid, seeker).then(status => {
+        console.log(status)
+    })
 }
 
 export const createCandidate = (dispatch, uid, seeker) => {

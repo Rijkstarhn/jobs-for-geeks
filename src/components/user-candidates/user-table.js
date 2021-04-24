@@ -3,7 +3,6 @@ import {Link, useHistory} from "react-router-dom";
 import UserRow from "./user-row";
 import {connect} from "react-redux";
 import userActions from "../../redux/actions/user-action";
-import jobActions from "../../redux/actions/job-action";
 
 const UserTable = ({user, seekers, findAllSavedCandidates}) => {
   console.log("saved user", seekers)
@@ -31,8 +30,8 @@ const UserTable = ({user, seekers, findAllSavedCandidates}) => {
             </tr>
 
             {
-              seekers.map((user) =>
-                  <UserRow user={user}/>
+              seekers.map((seeker) =>
+                  <UserRow user={user} seeker={seeker}/>
               )
             }
             </tbody>
