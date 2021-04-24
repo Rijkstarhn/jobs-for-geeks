@@ -46,17 +46,6 @@ const updateUser = (uid, user) => {
   })
 }
 
-const createSeekerForRecruiter = (uid, seekerId) => {
-  return fetch(`${API_URL}/${uid}/seekers`, {
-    method: 'POST',
-    body: JSON.stringify(seekerId),
-    headers: {
-      'content-type': 'application/json'
-    }
-  })
-  .then(response => response.json())
-}
-
 const createJobForUser = (uid, job) => {
   return fetch(`${API_URL}/${uid}/jobs`, {
     method: 'POST',
@@ -72,6 +61,21 @@ const findAllUsersSavedJobs = (uid) => {
   .then(response => response.json())
 }
 
+const createSeekerForRecruiter = (uid, seeker) => {
+  return fetch(`${API_URL}/${uid}/seekers`, {
+    method: 'POST',
+    body: JSON.stringify(seeker),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+      .then(response => response.json()).catch(error => console.log("error"))
+}
+
+const findAllSeekersForRecruiter = (uid) => {
+  return fetch(`${API_URL}/${uid}/seekers`)
+      .then(response => response.json())
+}
 
 export default {
   findAllUsers,
@@ -79,7 +83,8 @@ export default {
   login,
   register,
   updateUser,
-  createSeekerForRecruiter,
   createJobForUser,
-  findAllUsersSavedJobs
+  findAllUsersSavedJobs,
+  createSeekerForRecruiter,
+  findAllSeekersForRecruiter
 }

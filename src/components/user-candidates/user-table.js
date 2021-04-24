@@ -1,48 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Link, useHistory} from "react-router-dom";
 import UserRow from "./user-row";
 import {connect} from "react-redux";
+import userActions from "../../redux/actions/user-action";
+import jobActions from "../../redux/actions/job-action";
 
-
-const users = [
-  {
-    id: "123",
-    username: "Alice",
-    password: "123",
-    firstname: "ddd",
-    lastname: "",
-    role: "recruiter",
-    email: "dddd@gmail.com",
-    phone: "1234557",
-    company: "",
-    skills: "",
-    education: "",
-    experience: "",
-    license: "",
-    notes:"contacted"
-
-  },
-  {id: "223",
-    username: "User2",
-    password: "123",
-    firstname: "ddd",
-    lastname: "",
-    role: "job-seeker",
-    email: "dddd@gmail.com",
-    phone: "1234557",
-    company: "",
-    skills: "",
-    education: "",
-    experience: "",
-    license: "",
-    notes:"interested"
-  }
-
-]
-
-const UserTable = ({user}) => {
-  console.log("saved user", users)
+const UserTable = ({user, seekers, findAllSavedCandidates}) => {
+  console.log("saved user", seekers)
   const history = useHistory()
+  useEffect(() => {
+    findAllSavedCandidates(user._id)
+  }, [])
   return (
       <>
         <h1>
@@ -63,8 +31,8 @@ const UserTable = ({user}) => {
             </tr>
 
             {
-              users.map((u) =>
-                  <UserRow user={u}/>
+              seekers.map((user) =>
+                  <UserRow user={user}/>
               )
             }
             </tbody>
@@ -77,12 +45,13 @@ const UserTable = ({user}) => {
 
 const stateToPropsMapper = (state) => {
   return {
-    user: state.userReducer
+    user: state.userReducer,
+    seekers: state.savedCandidatesReducer
   }
 }
 
 const dispatchPropsMapper = (dispatch) => ({
-
+  findAllSavedCandidates: (uid) => userActions.getSavedCandidatesForUser(dispatch, uid)
 })
 
 export default connect(stateToPropsMapper, dispatchPropsMapper)(UserTable)

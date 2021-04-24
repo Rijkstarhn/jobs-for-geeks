@@ -179,7 +179,7 @@ const UserDetail = ({currentUser, create, status}) => {
             <option value="interested">Interested</option>
             <option value="contacted">Contacted</option>
           </select>
-          <button className="btn btn-primary" onClick={() => create(user)}>Add to my candidates list</button>
+          <button className="btn btn-primary" onClick={() => create(currentUser._id, user)}>Add to my candidates list</button>
         </div>)}
 
 
@@ -195,7 +195,7 @@ const stateToPropsMapper = (state) => {
 }
 
 const dispatchPropsMapper = (dispatch) => ({
-  create: (user) => userActions.createCandidate(dispatch, user)
+  create: (uid, user) => userActions.createCandidate(dispatch, uid, user)
 
 })
 
