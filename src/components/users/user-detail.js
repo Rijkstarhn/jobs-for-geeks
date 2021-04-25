@@ -101,7 +101,7 @@ const UserDetail = ({currentUser, create, status}) => {
           </div>
         </div>
 
-        {currentUser.role === "JOB SEEKER" && (
+        {user.role === "JOB SEEKER" && (
             <>
               <div className="form-group row mb-3">
                 <label className="col-sm-2 col-form-label">
@@ -156,7 +156,7 @@ const UserDetail = ({currentUser, create, status}) => {
 
         )}
 
-        {currentUser.role === "RECRUITER" && (
+        {user.role === "RECRUITER" && (
 
             <div className="form-group row mb-3">
               <label className="col-sm-2 col-form-label">
@@ -170,7 +170,7 @@ const UserDetail = ({currentUser, create, status}) => {
             </div>
 
         )}
-        {currentUser.role === "RECRUITER" && status === LOGIN_STATE.LOGGED_IN && (
+        {currentUser.role === "RECRUITER" && user.role === "JOB SEEKER" && status === LOGIN_STATE.LOGGED_IN && (
         <div className="row float-right">
 
           <select className="form-select" aria-label="Default select example"
