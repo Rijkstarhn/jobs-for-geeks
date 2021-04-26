@@ -13,7 +13,9 @@
 
 .loginButton {
     padding: 8px 20px;
-    margin: 12px;
+    margin-top: 12px;
+    margin-left: 5px;
+    margin-right: 1px;
 }
 
 .myProfileButton {
@@ -35,17 +37,21 @@
 
 .searchButton {
     padding: 8px 3rem;
+    margin-left: 230px;
+    margin-bottom: 24px;
 }
 
-.searchButton:hover {
-    transform: scale(1.1);
-    transition: 0.1s ease;
-}
+/*.searchButton:hover {*/
+/*    transform: scale(1.1);*/
+/*    transition: 0.1s ease;*/
+/*}*/
 
 
 .viewAllUsers {
     padding: 5px 39px;
-    margin: 10px;
+    width: 200px;
+    margin-left:40px;
+    margin-bottom: 10px;
 }
 
 .searchMenu {

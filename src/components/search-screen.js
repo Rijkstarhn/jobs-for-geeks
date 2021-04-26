@@ -58,10 +58,10 @@ const SearchScreen = ({
             <img src={banner} className="img-fluid" alt="home_banner"/>
             <br/>
             <div className="row search-heading">
-                <h1 className="col-sm-6">
+                <h1 className="col-sm-6 text-primary">
                     <Link to="/">
                         {/*<i className="fas fa-home"/>*/}
-                        <img src={icon} className="btn home-icon" alt="home_icon"/>
+                        {/*<img src={icon} className="btn home-icon" alt="home_icon"/>*/}
                     </Link>
                     Search Screen
                 </h1>
@@ -76,13 +76,13 @@ const SearchScreen = ({
                     </Link>}
 
                     {status === LOGIN_STATE.LOGGED_IN && <Link
-                        className="btn btn-outline-primary float-end logoutButton" to="/login"
+                        className="btn btn-outline-primary float-end loginButton" to="/login"
                         onClick={() => logout()}>
                         Logout
                     </Link>}
 
                     {status === LOGIN_STATE.LOGGED_IN && <Link
-                        className="btn btn-outline-primary float-end myProfileButton"
+                        className="btn btn-outline-primary float-end signUpButton"
                         to={`/profile/${user._id}`}>
                         My profile
                     </Link>}
@@ -90,7 +90,7 @@ const SearchScreen = ({
             </div>
             <br/>
             <div className="row">
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                     <h6>Job Description</h6>
                     <input value={searchDescription}
                            placeholder={'e.g. C'}
@@ -102,7 +102,7 @@ const SearchScreen = ({
                            }
                            className="form-control searchBar"/>
                 </div>
-                <div className="col-sm-4">
+                <div className="col-sm-3">
                     <h6>Location</h6>
                     <input value={searchLocation}
                            placeholder={'e.g. sf'}
@@ -114,7 +114,7 @@ const SearchScreen = ({
                            }
                            className="form-control searchBar"/>
                 </div>
-                <div className="col-sm-2">
+                <div className="col-sm-4">
                     <label className='col-form-label checkboxPosition'>
                         Full Time Only
                         <input type="checkbox" className='checkboxMargin'
@@ -124,20 +124,16 @@ const SearchScreen = ({
                                }}
                         />
                     </label>
-                </div>
-                <div className="col-sm-2">
                     <button
                         onClick={() => {
                             findJobs(searchDescription, searchLocation, isFullTime)
                         }}
-                        className="btn btn-outline-primary searchButton">
+                        className="btn btn-primary searchButton">
                         {/*Search*/}
                         <i className="fas fa-search"/>
                     </button>
-                  <button  className="btn btn-outline-primary searchButton" onClick={() => {
-                    jobService.findAllJobs().then(results => {
-                      setResults(results)
-                    })}}>Show All Jobs</button>
+                </div>
+                <div className="col-sm-2">
                 </div>
             </div>
             <br/>
@@ -164,6 +160,10 @@ const SearchScreen = ({
                 </div>
                 <div className="col-sm-2">
                     <div className="row">
+                        <button  className="btn btn-outline-primary viewAllUsers" onClick={() => {
+                            jobService.findAllJobs().then(results => {
+                                setResults(results)
+                            })}}>Show All Jobs</button>
                         <Link className="btn btn-outline-primary float-right viewAllUsers"
                               to={`/userlist`}>
                             View All Users
@@ -171,13 +171,13 @@ const SearchScreen = ({
                     </div>
                     <div className="row">
                         {status === LOGIN_STATE.LOGGED_IN && user.role === "JOB SEEKER" &&
-                         <Link className="btn btn-outline-primary float-right searchMenu"
+                         <Link className="btn btn-outline-primary float-right viewAllUsers"
                                to={`/${user._id}/myjob`}>
                              My Jobs
                          </Link>}
 
                         {status === LOGIN_STATE.LOGGED_IN && user.role === "RECRUITER" &&
-                         <Link className="btn btn-outline-primary float-right searchMenu"
+                         <Link className="btn btn-outline-primary float-right viewAllUsers"
                                to={`/${user._id}/candidates`}>
                              My Saved Candidates
                          </Link>}
