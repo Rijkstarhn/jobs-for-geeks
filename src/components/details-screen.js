@@ -40,24 +40,26 @@ const DetailsScreen = ({user, status}) => {
         }
         console.log("newjob", newJob)
 
-        //create(user._id, newJob)
-        userService.createJobForUser(user._id, newJob).then(status => {
-            console.log("add job status", status)
-            if (status) {
-                setError(true)
-            } else {
-                setError(false)
-            }
-        })
-    }
-    console.log("job", job)
-    return (
-        <div className='container-fluid containerMargin'>
-            <h2>
-                {job.title}
-                <img className='float-end companyIcon' src={`${job.company_logo}`}
-                     width={150} height={150}/>
-            </h2>
+
+    //create(user._id, newJob)
+    userService.createJobForUser(user._id, newJob).then(status => {
+      console.log("add job status", status)
+      if(status === "undefined"|| status.toString() !== "403"){
+        setError(false)
+      }else{
+        setError(true)
+      }
+    })
+  }
+  console.log("job", job)
+  return (
+      <div className='container-fluid containerMargin'>
+        <h2>
+          {job.title}
+          <img className='float-end companyIcon' src={`${job.company_logo}`}
+               width={150} height={150}/>
+        </h2>
+
 
             <h6 className='inlineHeading'>{job.company}</h6>
 
