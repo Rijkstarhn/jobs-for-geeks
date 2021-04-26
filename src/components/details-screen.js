@@ -4,6 +4,7 @@ import jobService from '../services/job-search-service'
 import {connect} from "react-redux";
 import {LOGIN_STATE} from "../redux/storeConstants";
 import jobActions from "../redux/actions/job-action";
+import userService from "../services/user-service";
 
 const isValidHttpUrl = (string) => {
   let url;
@@ -17,13 +18,14 @@ const isValidHttpUrl = (string) => {
   return url.protocol === "http:" || url.protocol === "https:";
 }
 
-const DetailsScreen = ({user, create, status}) => {
+const DetailsScreen = ({user,status}) => {
   const {jobId} = useParams()
   const history = useHistory()
   const [job, setMovie] = useState({})
-  const [jobDescription, setJobDescription] = useState({})
+  const [error, setError] = useState(false);
   useEffect(() => {
     findJobByID()
+    setError(false)
   }, [])
 
   const findJobByID = () => {
@@ -39,7 +41,15 @@ const DetailsScreen = ({user, create, status}) => {
     }
     console.log("newjob", newJob)
 
-    create(user._id, newJob)
+    //create(user._id, newJob)
+    userService.createJobForUser(user._id, newJob).then(status => {
+      console.log("add job status", status)
+      if(status){
+        setError(false)
+      }else{
+        setError(true)
+      }
+    })
   }
   console.log("job", job)
   return (
@@ -89,7 +99,8 @@ const DetailsScreen = ({user, create, status}) => {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                You have successfully added this job to your saved job list!
+                {!error && "You have successfully added this job to your saved job list!"}
+                {error && "This job has already existed in your saved job list!"}
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -109,7 +120,7 @@ const stateToPropsMapper = (state) => {
 }
 
 const dispatchPropsMapper = (dispatch) => ({
-  create: (uid, job) => jobActions.createJob(dispatch, uid, job)
+  //create: (uid, job) => jobActions.createJob(dispatch, uid, job)
 })
 
 export default connect(stateToPropsMapper, dispatchPropsMapper)(DetailsScreen)

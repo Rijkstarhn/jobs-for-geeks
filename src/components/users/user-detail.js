@@ -4,13 +4,25 @@ import userActions from "../../redux/actions/user-action";
 import {connect} from "react-redux";
 import {LOGIN_STATE} from "../../redux/storeConstants";
 import banner from "../../res/banner_teams.jpg";
+import userService from "../../services/user-service";
 
-const UserDetail = ({currentUser, create, status}) => {
+const UserDetail = ({currentUser,status}) => {
   const location = useLocation();
 
   const history = useHistory()
 
   const user = location.state.user || location.state.seeker
+  const [error, setError] = useState(false)
+
+  const createUser = (uid, seeker) => {
+    userService.createSeekerForRecruiter(uid, seeker).then(status => {
+      if(status){
+        setError(false)
+      }else{
+        setError(true)
+      }
+    })
+  }
 
   return (
       <div className="container">
@@ -177,7 +189,8 @@ const UserDetail = ({currentUser, create, status}) => {
                         data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
-                You have successfully added this user to your candidates list!
+                {!error && "You have successfully added this user to your candidates list!"}
+                {error && "This user has already existed in your list"}
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary"
@@ -202,7 +215,7 @@ const UserDetail = ({currentUser, create, status}) => {
                                data-bs-toggle="modal"
                                data-bs-target="#exampleModal"
 
-                               onClick={() => create(currentUser._id, user)}>
+                               onClick={() => createUser(currentUser._id, user)}>
                            Add to my candidates list
                        </button>
                    )}
@@ -220,7 +233,7 @@ const stateToPropsMapper = (state) => {
 }
 
 const dispatchPropsMapper = (dispatch) => ({
-  create: (uid, user) => userActions.createCandidate(dispatch, uid, user)
+  //create: (uid, user) => userActions.createCandidate(dispatch, uid, user)
 
 })
 
