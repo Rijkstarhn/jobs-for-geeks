@@ -90,6 +90,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                         <input className="form-control" id="firstname"
                                type="text"
                                value={cachedItem.firstname}
+
                                placeholder="John"
                                />
                     </div>
@@ -104,6 +105,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                                value={cachedItem.lastname}
                                placeholder="Doe"
                                />
+
                     </div>
                 </div>
 
@@ -172,6 +174,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                             <div className="col-sm-6">
                                 <input className="form-control" id="skills"
                                        value={cachedItem.skills}
+
                                        placeholder="Node.js, react"
                                        onChange={(e) => setCashedItem(
                                            {...cachedItem, skills: e.target.value})}/>
@@ -200,6 +203,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                               placeholder="I have ..."
 
                               value={cachedItem.experience}
+                              placeholder="I have ..."
                               onChange={(e) => setCashedItem(
                                   {
                                       ...cachedItem,
@@ -220,8 +224,8 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                         <div className="col-sm-10">
                             <input className="form-control" id="company"
                                    value={cachedItem.company}
-                                   placeholder="Tesla, Inc."
-                                   onChange={(e) => setCashedItem(
+                                   placeholder="Tesla, Inc"
+                    onChange={(e) => setCashedItem(
                                        {...cachedItem, company: e.target.value})}/>
                         </div>
                     </div>

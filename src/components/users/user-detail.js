@@ -176,6 +176,7 @@ const UserDetail = ({currentUser, create, status}) => {
           <button type="button" className="btn btn-primary float-end"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
+
                   onClick={() => create(currentUser._id, user)}>
             Add to my candidates list
           </button>
@@ -203,7 +204,6 @@ const UserDetail = ({currentUser, create, status}) => {
             </div>
           </div>
         </div>
-
 
 
       </div>
