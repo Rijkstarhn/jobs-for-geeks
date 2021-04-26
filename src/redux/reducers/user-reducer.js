@@ -10,25 +10,34 @@ export const userReducer = (state = INITIAL_STATE, action) => {
     case "UPDATE":
       return action.payload.user
 
-    case "CREATE_USER": {
-      return {
-        ...state,
-        interestedUsers: [...state.interestedUsers, action.payload.user]
+      case "CREATE_USER": {
+          return {
+              ...state,
+              users: [...state.users, action.payload.user]
+          }
       }
-    }
 
     case "DELETE_USER":
-      return {
-        ...state,
-        users: state.users.filter(user => {
-              if (user._id !== action.payload.userToDelete._id) {
-                return true
-              } else {
-                return false
-              }
-            }
+      // return {
+      //   ...state,
+      //   users: state.users.filter(user => {
+      //         if (user._id !== action.payload.userToDelete._id) {
+      //           return true
+      //         } else {
+      //           return false
+      //         }
+      //       }
+      //   )
+      // }
+        let newSeekers = state.filter(seeker => {
+                                       if (seeker._id !== action.payload.userToDelete._id) {
+                                           return true
+                                       } else {
+                                           return false
+                                       }
+                                   }
         )
-      }
+        return newSeekers
 
     case "UPDATE_USER":
       return {

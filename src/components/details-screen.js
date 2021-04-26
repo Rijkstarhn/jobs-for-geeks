@@ -96,11 +96,6 @@ const DetailsScreen = ({user, create, status}) => {
           </div>
         </div>
 
-
-
-
-
-
       </div>
   )
 }

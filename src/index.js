@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import bootstrap from 'bootstrap';
 import './index.css';
-import bootstrap from "bootstrap";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -12,13 +12,15 @@ import {loginReducer} from "./redux/reducers/login-reducer";
 import {userReducer} from "./redux/reducers/user-reducer";
 import {usersReducer} from "./redux/reducers/allusers-reducer";
 import {savedJobsReducer} from "./redux/reducers/saved-jobs-reducer";
+import {savedCandidatesReducer} from "./redux/reducers/saved-candidates-reducer";
 
 const reducer = combineReducers({
-  loginReducer:loginReducer,
-  userReducer:userReducer,
-  usersReducer:usersReducer,
-  savedJobsReducer: savedJobsReducer,
-})
+                                    loginReducer: loginReducer,
+                                    userReducer: userReducer,
+                                    usersReducer: usersReducer,
+                                    savedJobsReducer: savedJobsReducer,
+                                    savedCandidatesReducer: savedCandidatesReducer,
+                                })
 const store = createStore(reducer)
 
 ReactDOM.render(

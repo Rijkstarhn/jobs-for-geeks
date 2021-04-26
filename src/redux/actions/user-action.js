@@ -1,5 +1,4 @@
 import userService from "../../services/user-service";
-import jobService from "../../services/job-service"
 
 export const update = (dispatch, uid, user) => {
   userService.updateUser(uid, user)
@@ -24,40 +23,55 @@ export const findAllUsers = (dispatch) => {
   })
 }
 
-export const deleteCandidate = (dispatch, user) => {
-  dispatch({
-    type: "DELETE_USER",
-    payload:{
-      userToDelete:user
-    }
-  })
-}
+export const deleteCandidate = (dispatch, uid, seeker) => {
 
-export const createCandidate = (dispatch, uid, seekerId) => {
-  userService.createSeekerForRecruiter(uid, seekerId)
-      .then(user => {
+    userService.deleteSeekerForRecruiter(uid, seeker).then(status => {
+        console.log(status)
         dispatch({
-                   type: "CREATE_USER",
-                   payload:{
-                     user
-                   }
+                     type: "DELETE_CANDIDATE",
+                     payload:{
+                         userToDelete:seeker
+                     }
                  })
-      })
+    })
 }
 
-export const updateCandidate = (dispatch, job) => {
-  dispatch({
-    type: "UPDATE_JOB",
-    payload:{
-      jobToUpdate:job
-    }
-  })
+export const createCandidate = (dispatch, uid, seeker) => {
+    // dispatch({
+    //              type: "CREATE_USER",
+    //              payload: {
+    //                  user
+    //              }
+    //          })
+    userService.createSeekerForRecruiter(uid, seeker).then(status => {
+                                                    console.log(status)
+                                                }
+    )
 }
 
+export const updateCandidate = (dispatch, uid, seeker) => {
+  // dispatch({
+  //   type: "UPDATE_USER",
+  //   payload:{
+  //       userToUpdate:user
+  //   }
+  // })
+    userService.updateSeekerForRecruiter(uid, seeker).then(status => {
+        console.log(status)
+    })
+}
 
+export const getSavedCandidatesForUser = (dispatch, uid) => {
+    userService.findAllSeekersForRecruiter(uid).then((users) => dispatch({
+                                                                       type:"STORE_SAVED_CANDIDATES",
+                                                                       payload:{
+                                                                           users
+                                                                       }
+                                                                   }))
+}
 
 const userActions = {
-  update, findAllUsers, deleteCandidate, updateCandidate, createCandidate
+  update, findAllUsers, deleteCandidate, updateCandidate, createCandidate, getSavedCandidatesForUser
 
 }
 export default userActions

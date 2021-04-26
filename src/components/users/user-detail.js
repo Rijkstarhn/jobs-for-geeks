@@ -101,7 +101,7 @@ const UserDetail = ({currentUser, create, status}) => {
           </div>
         </div>
 
-        {currentUser.role === "JOB SEEKER" && (
+        {user.role === "JOB SEEKER" && (
             <>
               <div className="form-group row mb-3">
                 <label className="col-sm-2 col-form-label">
@@ -156,7 +156,7 @@ const UserDetail = ({currentUser, create, status}) => {
 
         )}
 
-        {currentUser.role === "RECRUITER" && (
+        {user.role === "RECRUITER" && (
 
             <div className="form-group row mb-3">
               <label className="col-sm-2 col-form-label">
@@ -170,17 +170,19 @@ const UserDetail = ({currentUser, create, status}) => {
             </div>
 
         )}
-        {currentUser.role === "RECRUITER" && status === LOGIN_STATE.LOGGED_IN && (
+        {currentUser.role === "RECRUITER" && user.role === "JOB SEEKER" && status === LOGIN_STATE.LOGGED_IN && (
         <div className="row float-right">
 
           <button type="button" className="btn btn-primary float-end"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
-                  onClick={() => create(user)}>
+
+                  onClick={() => create(currentUser._id, user)}>
             Add to my candidates list
           </button>
-        </div>)}
+        </div>)
 
+        }
 
         <div className="modal fade" id="exampleModal" tabIndex="-1"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -216,7 +218,7 @@ const stateToPropsMapper = (state) => {
 }
 
 const dispatchPropsMapper = (dispatch) => ({
-  create: (user) => userActions.createCandidate(dispatch, user)
+  create: (uid, user) => userActions.createCandidate(dispatch, uid, user)
 
 })
 
