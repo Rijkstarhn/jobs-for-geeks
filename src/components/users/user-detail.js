@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
-import {Link, useHistory, useLocation} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import userActions from "../../redux/actions/user-action";
 import {connect} from "react-redux";
 import {LOGIN_STATE} from "../../redux/storeConstants";
+import banner from "../../res/banner_teams.jpg";
 
 const UserDetail = ({currentUser, create, status}) => {
   const location = useLocation();
@@ -14,11 +15,8 @@ const UserDetail = ({currentUser, create, status}) => {
   console.log("user", user)
   return (
       <div className="container">
-        <h1 className="mb-3">
-            <div onClick={() => history.goBack()}
-                 className="btn btn-primary">
-                <i className="fas fa-arrow-left fa-2x"/>
-            </div>
+          <img src={banner} className="img-fluid" alt="signup_banner"/>
+          <h1 className="mb-3">
             User Detail
         </h1>
 
@@ -27,7 +25,7 @@ const UserDetail = ({currentUser, create, status}) => {
           <label className="col-sm-2 col-form-label">
             Username
           </label>
-          <div className="col-sm-6">
+          <div className="col-sm-10">
             <input className="form-control" id="usernameFld"
                    disabled={true}
                    value={user.username}
@@ -40,7 +38,7 @@ const UserDetail = ({currentUser, create, status}) => {
           <label className="col-sm-2 col-form-label">
             First Name
           </label>
-          <div className="col-sm-6">
+          <div className="col-sm-10">
             <input className="form-control" id="firstname"
                    type="text"
                    value={user.firstname}
@@ -53,7 +51,7 @@ const UserDetail = ({currentUser, create, status}) => {
           <label className="col-sm-2 col-form-label">
             Last Name
           </label>
-          <div className="col-sm-6">
+          <div className="col-sm-10">
             <input className="form-control" id="lastname"
                    value={user.lastname}
                    disabled={true}
@@ -66,7 +64,7 @@ const UserDetail = ({currentUser, create, status}) => {
           <label htmlFor="exampleInputEmail1"
                  className="form-label col-sm-2 ">
            Email Address</label>
-          <div className="col-sm-6">
+          <div className="col-sm-10">
             <input type="email" className="form-control"
                    id="exampleInputEmail1" aria-describedby="emailHelp"
                    value={user.email}
@@ -80,7 +78,7 @@ const UserDetail = ({currentUser, create, status}) => {
           <label className="form-label col-sm-2 " htmlFor="phone">Phone
             number:</label>
 
-          <div className="col-sm-6">
+          <div className="col-sm-10">
             <input className="form-control" type="tel" id="phone" name="phone"
                    value={user.phone}
                    disabled={true}
@@ -93,7 +91,7 @@ const UserDetail = ({currentUser, create, status}) => {
           <label className="col-sm-2 col-form-label" htmlFor="role-select">
             Role:
           </label>
-          <div className="col-sm-6">
+          <div className="col-sm-10">
             <input className="form-control" id="education"
                    value={user.role}
                    disabled={true}
@@ -107,7 +105,7 @@ const UserDetail = ({currentUser, create, status}) => {
                 <label className="col-sm-2 col-form-label">
                   Education
                 </label>
-                <div className="col-sm-6">
+                <div className="col-sm-10">
                   <input className="form-control" id="education"
                          value={user.education}
                          disabled={true}
@@ -119,7 +117,7 @@ const UserDetail = ({currentUser, create, status}) => {
                 <label className="col-sm-2 col-form-label">
                   Skills
                 </label>
-                <div className="col-sm-6">
+                <div className="col-sm-10">
                   <input className="form-control" id="skills"
                          value={user.skills}
                          disabled={true}
@@ -131,7 +129,7 @@ const UserDetail = ({currentUser, create, status}) => {
                 <label className="col-sm-2 col-form-label">
                   License & Certifications
                 </label>
-                <div className="col-sm-6">
+                <div className="col-sm-10">
                     <textarea className="form-control" id="license"
                               value={user.license}
                               disabled={true}
@@ -144,7 +142,7 @@ const UserDetail = ({currentUser, create, status}) => {
                 <label className="col-sm-2 col-form-label">
                   Experience
                 </label>
-                <div className="col-sm-6">
+                <div className="col-sm-10">
                     <textarea className="form-control" id="experience"
 
                               value={user.experience}
@@ -157,12 +155,11 @@ const UserDetail = ({currentUser, create, status}) => {
         )}
 
         {user.role === "RECRUITER" && (
-
             <div className="form-group row mb-3">
               <label className="col-sm-2 col-form-label">
                 Company
               </label>
-              <div className="col-sm-6">
+              <div className="col-sm-10">
                 <input className="form-control" id="company"
                        value={user.company}
                 />
@@ -170,19 +167,6 @@ const UserDetail = ({currentUser, create, status}) => {
             </div>
 
         )}
-        {currentUser.role === "RECRUITER" && user.role === "JOB SEEKER" && status === LOGIN_STATE.LOGGED_IN && (
-        <div className="row float-right">
-
-          <button type="button" className="btn btn-primary float-end"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-
-                  onClick={() => create(currentUser._id, user)}>
-            Add to my candidates list
-          </button>
-        </div>)
-
-        }
 
         <div className="modal fade" id="exampleModal" tabIndex="-1"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -205,7 +189,26 @@ const UserDetail = ({currentUser, create, status}) => {
           </div>
         </div>
 
+          <div className="row">
+              <div className="col-sm-6">
+                  <button className='btn btn-outline-primary' onClick={() => {
+                      history.goBack()
+                  }}>Back to User Lists
+                  </button>
+              </div>
+              <div className="col-sm-6">
+                  {currentUser.role === "RECRUITER" && user.role === "JOB SEEKER" && status
+                   === LOGIN_STATE.LOGGED_IN && (
+                       <button type="button" className="btn btn-outline-primary float-end"
+                               data-bs-toggle="modal"
+                               data-bs-target="#exampleModal"
 
+                               onClick={() => create(currentUser._id, user)}>
+                           Add to my candidates list
+                       </button>
+                   )}
+              </div>
+      </div>
       </div>
   )
 }
