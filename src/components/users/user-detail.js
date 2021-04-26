@@ -65,7 +65,7 @@ const UserDetail = ({currentUser, create, status}) => {
         <div className="form-group row mb-3">
           <label htmlFor="exampleInputEmail1"
                  className="form-label col-sm-2 ">
-            Address</label>
+           Email Address</label>
           <div className="col-sm-6">
             <input type="email" className="form-control"
                    id="exampleInputEmail1" aria-describedby="emailHelp"

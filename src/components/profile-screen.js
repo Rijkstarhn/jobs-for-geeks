@@ -17,12 +17,14 @@ const ProfileScreen = ({logout, user, updateUser}) => {
 
     const handleUpdate = () => {
         setUpdate(true)
+        console.log("ch")
         updateUser(userId, cachedItem)
     }
 
     // useEffect(() => {
     //   setUpdate(false)
     // }, [user])
+    console.log("user", user)
     return (
         <div className="container">
             <img src={profileBanner} className="img-fluid" alt="signup_banner"/>
@@ -92,6 +94,8 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                                value={cachedItem.firstname}
 
                                placeholder="John"
+                               onChange={(e) => setCashedItem(
+                                   {...cachedItem, firstname: e.target.value})}
                                />
                     </div>
                 </div>
@@ -104,6 +108,8 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                         <input className="form-control" id="lastname"
                                value={cachedItem.lastname}
                                placeholder="Doe"
+                               onChange={(e) => setCashedItem(
+                                   {...cachedItem, lastname: e.target.value})}
                                />
 
                     </div>
@@ -112,7 +118,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                 <div className="form-group row mb-3">
                     <label htmlFor="exampleInputEmail1"
                            className="form-label col-sm-2 ">
-                        Address
+                        Email Address
                     </label>
                     <div className="col-sm-10">
                         <input type="email" className="form-control"
