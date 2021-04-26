@@ -34,7 +34,7 @@ const UserList = ({users=[], findAllUsers}) => {
 
                                           <td>
                                               <Link to={{
-                                                  pathname: `/userDetail/${user._id}`,
+                                                  pathname: `/profile/${user._id}`,
                                                   state: {user}
                                               }}>{user.username}</Link>
                                           </td>

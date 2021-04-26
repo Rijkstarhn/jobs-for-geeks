@@ -177,7 +177,6 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                             <div className="col-sm-10">
                                 <input className="form-control" id="skills"
                                        value={cachedItem.skills}
-
                                        placeholder="Node.js, react"
                                        onChange={(e) => setCashedItem(
                                            {...cachedItem, skills: e.target.value})}/>
@@ -186,14 +185,14 @@ const ProfileScreen = ({logout, user, updateUser}) => {
 
                         <div className="form-group row mb-3">
                             <label className="col-sm-2 col-form-label">
-                                License & Certifications
+                                Licence & Certifications
                             </label>
                             <div className="col-sm-10">
-                    <textarea className="form-control" id="license"
-                              value={cachedItem.license}
+                    <textarea className="form-control" id="licence"
+                              value={cachedItem.licence}
                               placeholder="AWS certified Cloud Practitioner"
                               onChange={(e) => setCashedItem(
-                                  {...cachedItem, license: e.target.value})}/>
+                                  {...cachedItem, licence: e.target.value})}/>
                             </div>
                         </div>
 

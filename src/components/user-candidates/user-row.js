@@ -7,12 +7,12 @@ const UserRow = (
     {
         user, seeker,
         deleteUser,
-        updateUser
     }) => {
 
     // const [editing, setEditing] = useState(false)
     // const [newNote, setNewNote] = useState(user.notes)
     console.log("saved seekers at each row:", seeker)
+    console.log("saved user at each row:", user)
 
     // const handleUpdate = () => {
     //   let newUser = {
@@ -27,8 +27,8 @@ const UserRow = (
             <td>
                 <Link to={
                     {
-                        pathname: `/userDetail/${seeker._id}`,
-                        state: {user}
+                        pathname: `/profile/${seeker._id}`,
+                        state: {seeker}
                     }
                 }>{seeker.username}</Link>
             </td>

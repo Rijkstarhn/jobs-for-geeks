@@ -1,5 +1,5 @@
-// const API_URL = "http://localhost:4000/api/users";
-const API_URL = 'https://webbew-jobsforgeeks-server.herokuapp.com/api/users'
+const API_URL = "http://localhost:4000/api/users";
+//const API_URL = 'https://webbew-jobsforgeeks-server.herokuapp.com/api/users'
 
 const findAllUsers = () => {
   return fetch(`${API_URL}`)

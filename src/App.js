@@ -25,7 +25,7 @@ function App() {
             <Route path="/login" exact={true}>
                 <Login/>
             </Route>
-            <Route path="/profile/:userId" exact={true}>
+            <Route path="/profile" exact={true}>
                 <ProfileScreen/>
             </Route>
             <Route path="/register" exact={true}>
@@ -36,7 +36,7 @@ function App() {
             <UserList/>
           </Route>
 
-          <Route path="/userDetail/:userId" exact={true}>
+          <Route path="/profile/:userId" exact={true}>
             <UserDetail/>
           </Route>
 
@@ -47,7 +47,6 @@ function App() {
           <Route path="/:userId/candidates" exact={true}>
             <UserTable/>
           </Route>
-
 
 
           <Route path={["/search", "/search/:description?/:location?"]}

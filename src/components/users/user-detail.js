@@ -8,11 +8,10 @@ import banner from "../../res/banner_teams.jpg";
 const UserDetail = ({currentUser, create, status}) => {
   const location = useLocation();
 
-  const [type, setType] = useState("interested")
-    const history = useHistory()
-  const user = location.state.user
+  const history = useHistory()
 
-  console.log("user", user)
+  const user = location.state.user || location.state.seeker
+
   return (
       <div className="container">
           <img src={banner} className="img-fluid" alt="signup_banner"/>
@@ -130,8 +129,8 @@ const UserDetail = ({currentUser, create, status}) => {
                   License & Certifications
                 </label>
                 <div className="col-sm-10">
-                    <textarea className="form-control" id="license"
-                              value={user.license}
+                    <textarea className="form-control" id="licence"
+                              value={user.licence}
                               disabled={true}
                     />
                 </div>

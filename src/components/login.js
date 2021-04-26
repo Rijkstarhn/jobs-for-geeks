@@ -79,8 +79,7 @@ const Login = ({login, status, user}) => {
                             onClick={handleLogin}>
                         Log in
                     </button>
-                    {status === LOGIN_STATE.LOGGED_IN && <Redirect push
-                                                                   to={`/profile/${user._id}`}/>
+                    {status === LOGIN_STATE.LOGGED_IN && <Redirect push to={`/profile`}/>
                     }
                 </div>
             </div>

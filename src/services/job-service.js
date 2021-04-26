@@ -1,5 +1,5 @@
-// const API_URL = "http://localhost:4000/api/jobs";
-const API_URL = 'https://webbew-jobsforgeeks-server.herokuapp.com/api/jobs'
+const API_URL = "http://localhost:4000/api/jobs";
+//const API_URL = 'https://webbew-jobsforgeeks-server.herokuapp.com/api/jobs'
 
 export const findAllJobs = () =>
     fetch(API_URL)
