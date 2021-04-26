@@ -45,9 +45,9 @@ const DetailsScreen = ({user,status}) => {
     userService.createJobForUser(user._id, newJob).then(status => {
       console.log("add job status", status)
       if(status){
-        setError(false)
-      }else{
         setError(true)
+      }else{
+        setError(false)
       }
     })
   }

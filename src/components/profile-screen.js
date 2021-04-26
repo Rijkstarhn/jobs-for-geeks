@@ -209,7 +209,6 @@ const ProfileScreen = ({user, updateUser}) => {
                             </div>
                         </div>
                     </>
-
                 )}
 
                 {cachedItem.role === "RECRUITER" && (

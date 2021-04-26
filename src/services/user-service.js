@@ -54,7 +54,7 @@ const createJobForUser = (uid, job) => {
     headers: {
       'content-type': 'application/json'
     }
-  }).then(response => response.json()).catch(error => console.log("error"))
+  }).then(response => response.json()).catch(error => console.log("add job error", error))
 }
 
 const findAllUsersSavedJobs = (uid) => {
