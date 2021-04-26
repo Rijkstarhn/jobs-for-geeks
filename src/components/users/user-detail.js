@@ -87,7 +87,7 @@ const UserDetail = ({currentUser,status}) => {
 
         <div className="form-group row mb-3">
           <label className="form-label col-sm-2 " htmlFor="phone">Phone
-            number:</label>
+            number</label>
 
           <div className="col-sm-10">
             <input className="form-control" type="tel" id="phone" name="phone"
@@ -100,7 +100,7 @@ const UserDetail = ({currentUser,status}) => {
 
         <div className="form-group row mb-3">
           <label className="col-sm-2 col-form-label" htmlFor="role-select">
-            Role:
+            Role
           </label>
           <div className="col-sm-10">
             <input className="form-control" id="education"

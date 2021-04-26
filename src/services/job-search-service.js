@@ -1,5 +1,5 @@
-const JOB_API_URL = 'http://localhost:4000'
-//const JOB_API_URL = 'https://webbew-jobsforgeeks-server.herokuapp.com'
+// const JOB_API_URL = 'http://localhost:4000'
+const JOB_API_URL = 'https://webbew-jobsforgeeks-server.herokuapp.com'
 
 const findJobs = (description, location, isFullTime) => {
 

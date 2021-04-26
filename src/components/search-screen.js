@@ -117,7 +117,7 @@ const SearchScreen = ({
                            }
                            className="form-control searchBar"/>
                 </div>
-                <div className="col-sm-4">
+                <div className="col-sm-2">
                     <label className='col-form-label checkboxPosition'>
                         Full Time Only
                         <input type="checkbox" className='checkboxMargin'
@@ -127,6 +127,8 @@ const SearchScreen = ({
                                }}
                         />
                     </label>
+                </div>
+                <div className="col-sm-2">
                     <button
                         onClick={() => {
                             findJobs(searchDescription, searchLocation, isFullTime)
@@ -136,8 +138,8 @@ const SearchScreen = ({
                         <i className="fas fa-search"/>
                     </button>
                 </div>
-                <div className="col-sm-2">
-                </div>
+                {/*<div className="col-sm-2">*/}
+                {/*</div>*/}
             </div>
             <br/>
             <div className="row">
