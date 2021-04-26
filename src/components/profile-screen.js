@@ -226,15 +226,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                            data-toggle="collapse">Update</a>
                     </div>
                 </div>
-                {/*<div className="form-group row mb-3">*/}
-                {/*    <label className="col-sm-1 col-form-label"></label>*/}
-                {/*    <div className="col-sm-6">*/}
-                {/*        <Link to="/" className="btn btn-danger col-12 mb-0"*/}
-                {/*              id="logoutBtn" onClick={() => logout()}>*/}
-                {/*            Logout*/}
-                {/*        </Link>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+
             </form>
             <br/>
             <br/>
