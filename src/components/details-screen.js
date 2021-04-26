@@ -48,7 +48,7 @@ const DetailsScreen = ({user, create, status}) => {
       <div className='container-fluid containerMargin'>
         <h2>
           {job.title}
-          <img className='float-right companyIcon' src={`${job.company_logo}`}
+          <img className='float-end companyIcon' src={`${job.company_logo}`}
                width={150} height={150}/>
         </h2>
 

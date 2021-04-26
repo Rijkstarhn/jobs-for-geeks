@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import userService from "../services/user-service";
 import {Link} from "react-router-dom";
 import banner from "../res/banner_teams.jpg";
-import icon from "../res/icon.png";
 
 let editing = false;
 const Register = () => {
@@ -41,16 +40,15 @@ const Register = () => {
     return (
         <div className="container">
             <img src={banner} className="img-fluid" alt="signup_banner"/>
-            <h1 className="mb-3">
-                <Link to="/">
-                    <img src={icon} className="btn home-icon" alt="home_icon"/>
-                </Link>
-                Sign Up
-                <Link
-                    className="btn btn-outline-primary float-right loginButton" to="/login">
-                    Login
-                </Link>
-            </h1>
+            <div className="row">
+                <h1>
+                    Sign Up
+                    <Link
+                        className="btn btn-outline-primary float-end loginButton" to="/login">
+                        Login
+                    </Link>
+                </h1>
+            </div>
             <div className="form-group row mb-3">
                 <label className="col-sm-2 col-form-label">
                     Username
@@ -102,11 +100,11 @@ const Register = () => {
 
             <div className="form-group row mb-3">
                 <label className="col-sm-2 col-form-label" htmlFor="role-select">
-                    Choose a role:
+                    Choose a role
                 </label>
                 <div className="col-sm-10">
-                    <select className="form-control form-select-lg mb-3"
-                            aria-label=".form-select-lg example"
+                    <select className="form-select"
+                            aria-label=".form-select example"
                             value={role}
                             onChange={(e) => setRole(e.target.value)}>
                         <option value="JOB SEEKER">Job Seeker</option>
@@ -115,34 +113,32 @@ const Register = () => {
                 </div>
             </div>
 
-            <div className="form-group row mb-3">
+            <div className="row mb-3">
                 <label className="col-sm-2 col-form-label"/>
-                <div className="col-sm-10 ">
-                    <a className="btn btn-primary btn-block"
-                       onClick={() => handleSignUp()}>Submit
-                    </a>
+                <div className="col-sm-10">
+                    {registerStatus === "fail" && !editing && <div className="alert alert-danger">
+                        Username has already existed
+                    </div>}
+
+                    {registerStatus === "success" && !editing && <div
+                        className="alert alert-success">
+                        Register successfully! Please login
+                    </div>}
+                    <button className="btn btn-outline-success col-12"
+                            onClick={() => handleSignUp()}>Submit
+                    </button>
                 </div>
             </div>
 
-            {registerStatus === "fail" && !editing && <div className="alert alert-danger">
-                Username has already existed
-            </div>}
-
-            {registerStatus === "success" && !editing && <div className="alert alert-success">
-                Register successfully! Please login
-            </div>}
-
-            {/*<div className="form-group row mb-3">*/}
-            {/*    <label className="col-sm-2 col-form-label"/>*/}
-            {/*    <div className="col-sm-6">*/}
-            {/*        <Link to="/login">*/}
-            {/*            Login*/}
-            {/*        </Link>*/}
-            {/*        <Link className="float-right" to="/">*/}
-            {/*            Cancel*/}
-            {/*        </Link>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <div className="row">
+                <label className="col-sm-2 col-form-label"/>
+                <div className="col-sm-10">
+                    <Link
+                        className="btn btn-outline-primary col-12" to="/">
+                        Back to Homepage
+                    </Link>
+                </div>
+            </div>
         </div>
     )
 
