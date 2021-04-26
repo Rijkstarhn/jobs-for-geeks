@@ -3,6 +3,7 @@ import {Link, useHistory} from "react-router-dom";
 import UserRow from "./user-row";
 import {connect} from "react-redux";
 import userActions from "../../redux/actions/user-action";
+import banner from "../../res/banner_teams.jpg";
 
 const UserTable = ({user, seekers, findAllSavedCandidates}) => {
   console.log("saved seekers at table:", seekers)
@@ -11,13 +12,10 @@ const UserTable = ({user, seekers, findAllSavedCandidates}) => {
     findAllSavedCandidates(user._id)
   }, [])
   return (
-      <>
+      <div className="container">
+        <img src={banner} className="img-fluid" alt="signup_banner"/>
         <h1>
-          <div onClick={() => history.goBack()}
-               className="btn btn-primary">
-            <i className="fas fa-arrow-left fa-2x"/>
-          </div>
-          My candidates list
+          My Saved Candidates List
         </h1>
         <div className="container dy-table">
           <table className="table">
@@ -37,7 +35,13 @@ const UserTable = ({user, seekers, findAllSavedCandidates}) => {
             </tbody>
           </table>
         </div>
-      </>
+        <div className="col-sm-6">
+          <Link
+              className="btn btn-outline-primary backHomeBtn" to="/">
+            Homepage
+          </Link>
+        </div>
+      </div>
   )
 
 }

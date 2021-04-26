@@ -6,6 +6,7 @@ import userActions from "../../redux/actions/user-action";
 import {connect} from "react-redux";
 import {savedJobsReducer} from "../../redux/reducers/saved-jobs-reducer";
 import jobActions from "../../redux/actions/job-action";
+import banner from "../../res/banner_teams.jpg";
 
 const JobTable = ({user, jobs, findAllSavedJobs}) => {
   const history = useHistory()
@@ -14,22 +15,18 @@ const JobTable = ({user, jobs, findAllSavedJobs}) => {
     findAllSavedJobs(user._id)
   }, [])
   return (
-      <>
-        <h1>
-          <div onClick={() => history.goBack()}
-               className="btn btn-primary">
-            <i className="fas fa-arrow-left fa-2x"/>
-          </div>
-          My job list
+      <div className="container">
+          <img src={banner} className="img-fluid" alt="signup_banner"/>
+          <h1>
+          My jobs list
         </h1>
-        <div className="container dy-table">
+        <div className="job-table">
           <table className="table">
             <tbody>
             <tr>
               <th className="d-none d-md-table-cell">Job Title</th>
               <th className="d-none d-lg-table-cell">Note</th>
               <th></th>
-
             </tr>
 
             {
@@ -41,7 +38,13 @@ const JobTable = ({user, jobs, findAllSavedJobs}) => {
             </tbody>
           </table>
         </div>
-      </>
+        <div className="col-sm-6">
+          <Link
+              className="btn btn-outline-primary backHomeBtn" to="/">
+            Homepage
+          </Link>
+        </div>
+      </div>
   )
 
 }

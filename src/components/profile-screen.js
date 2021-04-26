@@ -29,16 +29,13 @@ const ProfileScreen = ({logout, user, updateUser}) => {
         <div className="container">
             <img src={profileBanner} className="img-fluid" alt="signup_banner"/>
             <h1 className="mb-3">
-                <Link to="/">
-                    <img src={icon} className="btn home-icon" alt="home_icon"/>
-                </Link>
                 Profile
             </h1>
             <form>
                 {update && <div className="form-group row">
                     <label className="col-sm-12 col-form-label">
                         <div className="alert alert-success"
-                             id="alertFld">Profile successfully saved
+                             id="alertFld">Profile successfully saved!
                         </div>
                     </label>
                 </div>}
@@ -148,7 +145,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                         Choose a role
                     </label>
                     <div className="col-sm-10">
-                        <select className="form-control form-select-lg mb-3"
+                        <select className="form-control form-select"
                                 aria-label=".form-select-lg example"
                                 value={cachedItem.role}
                                 disabled={true}>
@@ -164,7 +161,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                             <label className="col-sm-2 col-form-label">
                                 Education
                             </label>
-                            <div className="col-sm-6">
+                            <div className="col-sm-10">
                                 <input className="form-control" id="education"
                                        value={cachedItem.education}
                                        placeholder="Northeastern University"
@@ -177,7 +174,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                             <label className="col-sm-2 col-form-label">
                                 Skills
                             </label>
-                            <div className="col-sm-6">
+                            <div className="col-sm-10">
                                 <input className="form-control" id="skills"
                                        value={cachedItem.skills}
 
@@ -191,7 +188,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                             <label className="col-sm-2 col-form-label">
                                 License & Certifications
                             </label>
-                            <div className="col-sm-6">
+                            <div className="col-sm-10">
                     <textarea className="form-control" id="license"
                               value={cachedItem.license}
                               placeholder="AWS certified Cloud Practitioner"
@@ -204,7 +201,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                             <label className="col-sm-2 col-form-label">
                                 Experience
                             </label>
-                            <div className="col-sm-6">
+                            <div className="col-sm-10">
                     <textarea className="form-control" id="experience"
                               placeholder="I have ..."
 
@@ -237,15 +234,24 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                     </div>
                 )}
 
-                <div className="form-group row mb-3">
-                    <label className="col-sm-2 col-form-label"></label>
+                <div className="row mb-3">
+                    <label className="col-sm-2 col-form-label"/>
                     <div className="col-sm-10">
                         <a onClick={() => handleUpdate()}
-                           className="btn btn-success col-12 mb-1"
+                           className="btn btn-outline-primary col-12"
                            data-toggle="collapse">Update</a>
                     </div>
                 </div>
 
+                <div className="row">
+                    <label className="col-sm-2 col-form-label"/>
+                    <div className="col-sm-10">
+                        <Link
+                            className="btn btn-outline-primary col-12" to="/">
+                            Homepage
+                        </Link>
+                    </div>
+                </div>
             </form>
             <br/>
             <br/>

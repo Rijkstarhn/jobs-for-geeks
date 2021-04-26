@@ -3,6 +3,7 @@ import {Link, useHistory} from "react-router-dom";
 import loginActions from "../../redux/actions/login-action";
 import {connect} from "react-redux";
 import userActions from "../../redux/actions/user-action";
+import banner from "../../res/banner_teams.jpg";
 
 const UserList = ({users=[], findAllUsers}) => {
 
@@ -13,13 +14,10 @@ const UserList = ({users=[], findAllUsers}) => {
     const history = useHistory()
     console.log("users", users)
     return (
-        <>
+        <div className="container">
+            <img src={banner} className="img-fluid" alt="signup_banner"/>
             <h1>
-                <div onClick={() => history.goBack()}
-                     className="btn btn-primary">
-                    <i className="fas fa-arrow-left fa-2x"/>
-                </div>
-                All users
+                All Users
             </h1>
             <div className="container dy-table">
                 <table className="table">
@@ -50,7 +48,13 @@ const UserList = ({users=[], findAllUsers}) => {
                     </tbody>
                 </table>
             </div>
-        </>
+            <div className="col-sm-6">
+                <Link
+                    className="btn btn-outline-primary backHomeBtn" to="/">
+                    Homepage
+                </Link>
+            </div>
+        </div>
     )
 }
 const stateToPropsMapper = (state) => {

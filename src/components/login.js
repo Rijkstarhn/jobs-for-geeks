@@ -75,7 +75,7 @@ const Login = ({login, status, user}) => {
                     {status === LOGIN_STATE.INVALID_LOGIN && <div className="alert alert-danger">
                         Invalid username or password! Please try again.
                     </div>}
-                    <button className="btn btn-outline-success col-12"
+                    <button className="btn btn-outline-primary col-12"
                             onClick={handleLogin}>
                         Log in
                     </button>

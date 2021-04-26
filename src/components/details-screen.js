@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useHistory, useParams} from 'react-router-dom'
 import jobService from '../services/job-search-service'
-import loginActions from "../redux/actions/login-action";
 import {connect} from "react-redux";
-import userActions from "../redux/actions/user-action";
 import {LOGIN_STATE} from "../redux/storeConstants";
 import jobActions from "../redux/actions/job-action";
 
@@ -64,20 +62,24 @@ const DetailsScreen = ({user, create, status}) => {
         <br/>
         <h6 className='inlineHeading'>Job Description</h6>
         <div dangerouslySetInnerHTML={{__html: job.description}}/>
-        <button className='btn btn-primary' onClick={() => {
-          history.goBack()
-        }}>Back
-        </button>
 
-        {user.role === "JOB SEEKER" && status === LOGIN_STATE.LOGGED_IN &&
-        // <button className="btn btn-primary float-end"
-        //         onClick={() => handleCreateJob()}>Add to my job list</button>
-
-          <button type="button" className="btn btn-primary float-end" data-bs-toggle="modal"
-          data-bs-target="#exampleModal" onClick={() => handleCreateJob()}>
-          Add to my job list modal
-          </button>
-        }
+        <div className="row">
+          <div className="col-sm-6">
+              <button className='btn btn-outline-primary' onClick={() => {
+                  history.goBack()
+              }}>Back to My Job Lists
+              </button>
+          </div>
+            <div className="col-sm-6">
+                {user.role === "JOB SEEKER" && status === LOGIN_STATE.LOGGED_IN &&
+                 <button type="button" className="btn btn-outline-primary float-end"
+                         data-bs-toggle="modal"
+                         data-bs-target="#exampleModal" onClick={() => handleCreateJob()}>
+                     Add to my job list modal
+                 </button>
+                }
+            </div>
+        </div>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">

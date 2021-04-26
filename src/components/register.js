@@ -124,7 +124,7 @@ const Register = () => {
                         className="alert alert-success">
                         Register successfully! Please login
                     </div>}
-                    <button className="btn btn-outline-success col-12"
+                    <button className="btn btn-outline-primary col-12"
                             onClick={() => handleSignUp()}>Submit
                     </button>
                 </div>
