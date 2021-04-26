@@ -1,10 +1,7 @@
 import SearchScreen from "./components/search-screen";
 import DetailsScreen from "./components/details-screen";
 import {BrowserRouter, Route} from "react-router-dom";
-import HomeScreen from "./components/home-screen";
-import LoginScreen from "./components/login-screen";
 import ProfileScreen from "./components/profile-screen";
-import RegisterScreen from "./components/register-screen";
 import UserList from "./components/users/user-list";
 import UserDetail from "./components/users/user-detail";
 import JobTable from "./components/user-jobs/job-table";
