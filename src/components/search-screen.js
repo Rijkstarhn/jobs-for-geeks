@@ -67,22 +67,22 @@ const SearchScreen = ({
                 </h1>
                 <div className="col-sm-6">
                     {status === LOGIN_STATE.LOGGED_OUT && <Link
-                        className="btn btn-outline-primary float-right loginButton" to="/login">
+                        className="btn btn-outline-primary float-end loginButton" to="/login">
                         Login
                     </Link>}
                     {status === LOGIN_STATE.LOGGED_OUT && <Link
-                        className="btn btn-outline-primary float-right signUpButton" to="/register">
+                        className="btn btn-outline-primary float-end signUpButton" to="/register">
                         Sign up
                     </Link>}
 
                     {status === LOGIN_STATE.LOGGED_IN && <Link
-                        className="btn btn-outline-primary float-right logoutButton" to="/login"
+                        className="btn btn-outline-primary float-end logoutButton" to="/login"
                         onClick={() => logout()}>
                         Logout
                     </Link>}
 
                     {status === LOGIN_STATE.LOGGED_IN && <Link
-                        className="btn btn-outline-primary float-right myProfileButton"
+                        className="btn btn-outline-primary float-end myProfileButton"
                         to={`/profile/${user._id}`}>
                         My profile
                     </Link>}
