@@ -44,10 +44,10 @@ const DetailsScreen = ({user,status}) => {
     //create(user._id, newJob)
     userService.createJobForUser(user._id, newJob).then(status => {
       console.log("add job status", status)
-      if(status){
-        setError(true)
-      }else{
+      if(status === "undefined"|| status.toString() !== "403"){
         setError(false)
+      }else{
+        setError(true)
       }
     })
   }
