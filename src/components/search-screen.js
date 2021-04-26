@@ -83,7 +83,10 @@ const SearchScreen = ({
 
                     {status === LOGIN_STATE.LOGGED_IN && <Link
                         className="btn btn-outline-primary float-end signUpButton"
+
                         to={`/profile/`}>
+
+
                         Profile
                     </Link>}
                 </div>

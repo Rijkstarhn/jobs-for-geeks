@@ -3,28 +3,23 @@ import {Link, useHistory, useParams} from "react-router-dom";
 import loginActions from "../redux/actions/login-action";
 import {connect} from "react-redux";
 import userActions from "../redux/actions/user-action";
-import icon from "../res/icon.png";
 import profileBanner from "../res/banner_solo.jpg";
-import banner from "../res/banner_teams.jpg";
 
-const ProfileScreen = ({logout, user, updateUser}) => {
-    const {userId} = useParams()
+
+const ProfileScreen = ({user, updateUser}) => {
+
 
     const [cachedItem, setCashedItem] = useState(user)
     const [password, setPassword] = useState(user.password)
     const [update, setUpdate] = useState(false)
-    const history = useHistory()
+
 
     const handleUpdate = () => {
         setUpdate(true)
-        console.log("ch")
-        updateUser(userId, cachedItem)
+        updateUser(user._id, cachedItem)
     }
 
-    // useEffect(() => {
-    //   setUpdate(false)
-    // }, [user])
-    console.log("user", user)
+
     return (
         <div className="container">
             <img src={profileBanner} className="img-fluid" alt="signup_banner"/>
