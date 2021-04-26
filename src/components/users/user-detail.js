@@ -173,14 +173,37 @@ const UserDetail = ({currentUser, create, status}) => {
         {currentUser.role === "RECRUITER" && user.role === "JOB SEEKER" && status === LOGIN_STATE.LOGGED_IN && (
         <div className="row float-right">
 
-          <select className="form-select" aria-label="Default select example"
-                  value={type}
-                  onChange={(e) => setType(e.target.value)}>
-            <option value="interested">Interested</option>
-            <option value="contacted">Contacted</option>
-          </select>
-          <button className="btn btn-primary" onClick={() => create(currentUser._id, user)}>Add to my candidates list</button>
-        </div>)}
+          <button type="button" className="btn btn-primary float-end"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  onClick={() => create(currentUser._id, user)}>
+            Add to my candidates list
+          </button>
+        </div>)
+
+        }
+
+        <div className="modal fade" id="exampleModal" tabIndex="-1"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" className="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                You have successfully added this user to your candidates list!
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary"
+                        data-bs-dismiss="modal">Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
 
       </div>

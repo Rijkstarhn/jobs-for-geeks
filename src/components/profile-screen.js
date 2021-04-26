@@ -90,7 +90,8 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                         <input className="form-control" id="firstname"
                                type="text"
                                value={cachedItem.firstname}
-                               disabled={true}/>
+                               placeholder="John"
+                               />
                     </div>
                 </div>
 
@@ -101,7 +102,8 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                     <div className="col-sm-10">
                         <input className="form-control" id="lastname"
                                value={cachedItem.lastname}
-                               disabled={true}/>
+                               placeholder="Doe"
+                               />
                     </div>
                 </div>
 
@@ -114,6 +116,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                         <input type="email" className="form-control"
                                id="exampleInputEmail1" aria-describedby="emailHelp"
                                value={cachedItem.email}
+                               placeholder="johndoe@example.com"
                                onChange={(e) => setCashedItem(
                                    {...cachedItem, email: e.target.value})}/>
                     </div>
@@ -126,6 +129,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                     <div className="col-sm-10">
                         <input className="form-control" type="tel" id="phone" name="phone"
                                value={cachedItem.phone}
+                               placeholder="123-456-7890"
                                onChange={(e) => setCashedItem(
                                    {...cachedItem, phone: e.target.value})}/>
                     </div>
@@ -155,6 +159,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                             <div className="col-sm-6">
                                 <input className="form-control" id="education"
                                        value={cachedItem.education}
+                                       placeholder="Northeastern University"
                                        onChange={(e) => setCashedItem(
                                            {...cachedItem, education: e.target.value})}/>
                             </div>
@@ -167,6 +172,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                             <div className="col-sm-6">
                                 <input className="form-control" id="skills"
                                        value={cachedItem.skills}
+                                       placeholder="Node.js, react"
                                        onChange={(e) => setCashedItem(
                                            {...cachedItem, skills: e.target.value})}/>
                             </div>
@@ -179,6 +185,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                             <div className="col-sm-6">
                     <textarea className="form-control" id="license"
                               value={cachedItem.license}
+                              placeholder="AWS certified Cloud Practitioner"
                               onChange={(e) => setCashedItem(
                                   {...cachedItem, license: e.target.value})}/>
                             </div>
@@ -190,6 +197,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                             </label>
                             <div className="col-sm-6">
                     <textarea className="form-control" id="experience"
+                              placeholder="I have ..."
 
                               value={cachedItem.experience}
                               onChange={(e) => setCashedItem(
@@ -212,6 +220,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                         <div className="col-sm-10">
                             <input className="form-control" id="company"
                                    value={cachedItem.company}
+                                   placeholder="Tesla, Inc."
                                    onChange={(e) => setCashedItem(
                                        {...cachedItem, company: e.target.value})}/>
                         </div>
@@ -226,15 +235,7 @@ const ProfileScreen = ({logout, user, updateUser}) => {
                            data-toggle="collapse">Update</a>
                     </div>
                 </div>
-                {/*<div className="form-group row mb-3">*/}
-                {/*    <label className="col-sm-1 col-form-label"></label>*/}
-                {/*    <div className="col-sm-6">*/}
-                {/*        <Link to="/" className="btn btn-danger col-12 mb-0"*/}
-                {/*              id="logoutBtn" onClick={() => logout()}>*/}
-                {/*            Logout*/}
-                {/*        </Link>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+
             </form>
             <br/>
             <br/>
